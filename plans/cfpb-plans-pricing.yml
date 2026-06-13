@@ -1,0 +1,31 @@
+name: CFPB API Plans and Pricing
+description: The Consumer Financial Protection Bureau (CFPB) provides all public APIs free of charge as a U.S. government agency. There are no subscription tiers, paid plans, or API keys required to access the Consumer Complaint Database API or the HMDA Data Browser API. The HMDA Filing API requires institutional credentials for regulated financial institutions submitting compliance data.
+plans:
+  - name: Public Access
+    description: Free, unrestricted access to the Consumer Complaint Database API and HMDA Data Browser API. No registration or API key required. Available to any developer, researcher, or member of the public.
+    url: https://www.consumerfinance.gov/data-research/
+    free: true
+    rateLimits:
+      - requests: Not publicly specified
+        period: Not publicly specified
+        notes: Reasonable use expected; contact tech@consumerfinance.gov for high-volume needs
+    features:
+      - Full access to Consumer Complaint Database (15M+ records)
+      - HMDA aggregation reports (nationwide and regional)
+      - HMDA CSV data downloads
+      - JSON response format
+      - No authentication required
+  - name: HMDA Institutional Filing
+    description: Access for HMDA-covered financial institutions to submit regulatory filings via the HMDA Platform Filing API. Requires institutional LEI (Legal Entity Identifier) and CFPB-issued credentials. No cost to regulated filers.
+    url: https://ffiec.cfpb.gov/
+    free: true
+    features:
+      - LAR file submission
+      - Submission status checks
+      - Edit report retrieval
+      - Institutional authentication via LEI
+notes:
+  - CFPB is a U.S. federal government agency; all public data APIs are provided at no cost
+  - No commercial licensing or tiered pricing applies
+  - Source code is in the public domain within the United States
+  - Contact tech@consumerfinance.gov for technical assistance

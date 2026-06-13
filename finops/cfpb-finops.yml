@@ -1,0 +1,42 @@
+name: CFPB API FinOps
+description: Financial operations considerations for consuming CFPB public APIs. All CFPB public APIs are free to use with no direct costs to API consumers. FinOps considerations apply to infrastructure costs incurred by the consuming organization when integrating, storing, or processing CFPB data at scale.
+providerCosts:
+  directCost: $0.00
+  model: Free public government API
+  notes: CFPB is a U.S. federal government agency funded by the Federal Reserve System. All public data APIs are provided at no cost to consumers. No API keys, subscriptions, or payment methods are required.
+consumerCosts:
+  - category: Data Storage
+    description: The Consumer Complaint Database contains 15M+ records and the HMDA datasets contain millions of mortgage records annually. Storing bulk downloads requires significant storage capacity.
+    estimatedCost: Varies by volume; bulk complaint CSV can exceed several GB
+    recommendations:
+      - Use the API with pagination for targeted queries rather than bulk downloads when possible
+      - Compress stored data (gzip) to reduce storage footprint
+      - Use columnar storage formats (Parquet) for analytical workloads
+  - category: Compute
+    description: Processing large HMDA CSV downloads or complaint database exports for analytics requires compute resources.
+    recommendations:
+      - Use streaming processing for large CSV downloads rather than loading entire files into memory
+      - Cache API responses for repeated queries to reduce compute overhead
+      - Consider serverless functions for infrequent, event-driven API calls
+  - category: Egress / Bandwidth
+    description: Large HMDA nationwide CSV downloads can be several GB. Bandwidth costs apply when downloading and transferring data.
+    recommendations:
+      - Download bulk data once and store locally or in object storage
+      - Use the aggregation API endpoints for summary statistics rather than downloading raw data
+      - Schedule bulk downloads during off-peak hours
+  - category: Integration Development
+    description: One-time engineering costs to build integrations with CFPB APIs.
+    notes: No ongoing licensing fees; primary cost is developer time for integration and maintenance
+optimization:
+  - Use the /search endpoint with specific filters to retrieve only relevant complaint records
+  - Cache static or infrequently-changing HMDA aggregation results
+  - Use HMDA bulk data annual files for historical analysis rather than repeated API calls
+  - Monitor CFPB GitHub repositories for API changes to avoid integration breakage
+  - Leverage the open-source ccdb5-api and hmda-platform code for self-hosting if high-volume access is needed
+references:
+  - name: CFPB Data Research
+    url: https://www.consumerfinance.gov/data-research/
+  - name: HMDA Data Publication
+    url: https://ffiec.cfpb.gov/data-publication
+  - name: CFPB Open Source
+    url: https://cfpb.github.io/

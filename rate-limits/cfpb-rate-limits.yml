@@ -1,0 +1,33 @@
+name: CFPB API Rate Limits
+description: The Consumer Financial Protection Bureau does not publish explicit rate limit policies for its public APIs. As a U.S. government agency, CFPB expects reasonable use of its public data APIs. The HMDA Data Browser API can stream large CSV datasets, and high-volume programmatic access should be coordinated with the CFPB tech team.
+rateLimits:
+  - api: Consumer Complaint Database API
+    baseURL: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+    documented: false
+    notes: No official rate limits published. API is publicly accessible without authentication. Reasonable use is expected. For high-volume access, contact tech@consumerfinance.gov.
+    parameters:
+      - name: size
+        description: Number of results per page (max 100)
+        default: 10
+        max: 100
+      - name: from
+        description: Offset for pagination
+        default: 0
+  - api: HMDA Data Browser API
+    baseURL: https://ffiec.cfpb.gov/v2/data-browser-api/
+    documented: false
+    notes: No official rate limits published. Nationwide CSV downloads can be large; streaming is used for data delivery. For large-scale data needs, bulk data files are available via the HMDA data publications page.
+    bulkDownload: https://ffiec.cfpb.gov/data-publication
+  - api: HMDA Platform Filing API
+    baseURL: https://ffiec.cfpb.gov/
+    documented: false
+    notes: Used by regulated financial institutions for annual HMDA submissions. Rate limits not published; usage is inherently low-frequency (annual filing cycles).
+contacts:
+  - type: Technical Support
+    email: tech@consumerfinance.gov
+    notes: Contact for high-volume API access requests or technical issues
+recommendations:
+  - Implement caching to avoid redundant requests to the Consumer Complaint Database API
+  - Use pagination (size and from parameters) for large result sets
+  - For bulk complaint data, consider downloading the full dataset from the CFPB data publications page rather than paginating through the API
+  - For HMDA bulk data, use the CSV download endpoints or annual data files rather than the aggregation API

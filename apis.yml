@@ -1,0 +1,94 @@
+aid: cfpb
+name: Consumer Financial Protection Bureau (CFPB)
+description: The Consumer Financial Protection Bureau (CFPB) provides public REST APIs for searching consumer financial complaint data, accessing Home Mortgage Disclosure Act (HMDA) mortgage lending records, and retrieving regulatory filing data. These APIs support financial researchers, journalists, developers, and the general public in understanding consumer financial markets and lending practices across the United States.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/cfpb/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+tags:
+  - Consumer Finance
+  - Government
+  - Complaints
+  - Mortgage
+  - HMDA
+  - Financial Data
+  - Regulatory
+  - Open Data
+apis:
+  - aid: cfpb:consumer-complaint-database-api
+    name: Consumer Complaint Database API
+    description: Provides programmatic access to the CFPB Consumer Complaint Database, enabling search and retrieval of consumer financial complaints submitted to companies. Supports filtering by product, issue, company, state, date range, and other fields, with results returned as JSON. Contains over 15 million complaint records.
+    humanURL: https://cfpb.github.io/api/ccdb/
+    baseURL: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+    tags:
+      - Consumer Complaints
+      - Financial Services
+      - Search
+      - Open Data
+    properties:
+      - type: Documentation
+        url: https://cfpb.github.io/api/ccdb/api.html
+      - type: OpenAPI
+        url: https://cfpb.github.io/ccdb5-api/documentation/
+      - type: GitHubRepository
+        url: https://github.com/cfpb/ccdb5-api
+  - aid: cfpb:hmda-data-browser-api
+    name: HMDA Data Browser API
+    description: Provides access to Home Mortgage Disclosure Act (HMDA) data, enabling aggregation reports and CSV downloads of mortgage lending records filtered by geography (state, county, MSA/MD), financial institution LEI, and year. Supports nationwide and regional queries for analyzing mortgage lending patterns and fair lending compliance.
+    humanURL: https://ffiec.cfpb.gov/documentation/api/data-browser/
+    baseURL: https://ffiec.cfpb.gov/v2/data-browser-api/
+    tags:
+      - Mortgage
+      - HMDA
+      - Lending
+      - Financial Data
+      - Open Data
+    properties:
+      - type: Documentation
+        url: https://ffiec.cfpb.gov/documentation/api/data-browser/
+      - type: GitHubRepository
+        url: https://github.com/cfpb/hmda-platform
+  - aid: cfpb:hmda-filing-api
+    name: HMDA Platform Filing API
+    description: Enables financial institutions to submit Home Mortgage Disclosure Act (HMDA) data programmatically to the FFIEC HMDA Platform. Provides endpoints for filing submissions, uploading loan application register (LAR) files, checking submission status, and retrieving edit reports for regulatory compliance.
+    humanURL: https://ffiec.cfpb.gov/documentation/category/developer-apis
+    baseURL: https://ffiec.cfpb.gov/
+    tags:
+      - HMDA
+      - Filing
+      - Regulatory
+      - Mortgage
+      - Submission
+    properties:
+      - type: Documentation
+        url: https://ffiec.cfpb.gov/documentation/category/developer-apis
+      - type: GitHubRepository
+        url: https://github.com/cfpb/hmda-platform
+common:
+  - type: Website
+    url: https://www.consumerfinance.gov/
+  - type: Documentation
+    url: https://cfpb.github.io/
+  - type: GitHubOrg
+    url: https://github.com/cfpb
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/consumer-financial-protection-bureau/
+  - type: Blog
+    url: https://www.consumerfinance.gov/about-us/blog/
+  - type: Pricing
+    url: https://www.consumerfinance.gov/data-research/
+  - type: StatusPage
+    url: https://www.consumerfinance.gov/
+  - type: X
+    url: https://twitter.com/CFPB
+  - type: Plans
+    url: plans/cfpb-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cfpb-rate-limits.yml
+  - type: FinOps
+    url: finops/cfpb-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
