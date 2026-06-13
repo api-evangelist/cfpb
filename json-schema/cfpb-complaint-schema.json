@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cfpb/main/json-schema/cfpb-complaint-schema.json",
+  "title": "Complaint",
+  "description": "A consumer financial complaint submitted to the CFPB Consumer Complaint Database",
+  "type": "object",
+  "properties": {
+    "complaint_id": {
+      "type": "integer",
+      "description": "The unique identification number for a complaint"
+    },
+    "company": {
+      "type": "string",
+      "description": "The company the complaint is about"
+    },
+    "company_public_response": {
+      "type": ["string", "null"],
+      "description": "The company's optional, public-facing response to the consumer's complaint"
+    },
+    "company_response": {
+      "type": "string",
+      "description": "The response from the company about this complaint"
+    },
+    "complaint_what_happened": {
+      "type": ["string", "null"],
+      "description": "A description of the complaint provided by the consumer"
+    },
+    "date_received": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the CFPB received the complaint (YYYY-MM-DD)"
+    },
+    "date_sent_to_company": {
+      "type": ["string", "null"],
+      "description": "The date the CFPB sent the complaint to the company"
+    },
+    "has_narrative": {
+      "type": "boolean",
+      "description": "Indicates this complaint has a narrative"
+    },
+    "issue": {
+      "type": "string",
+      "description": "The issue the consumer identified in the complaint"
+    },
+    "product": {
+      "type": "string",
+      "description": "The type of product the consumer identified in the complaint"
+    },
+    "state": {
+      "type": ["string", "null"],
+      "description": "The state of the mailing address provided by the consumer (two-letter abbreviation)"
+    },
+    "sub_issue": {
+      "type": ["string", "null"],
+      "description": "The sub-issue the consumer identified in the complaint"
+    },
+    "sub_product": {
+      "type": ["string", "null"],
+      "description": "The type of sub-product the consumer identified in the complaint"
+    },
+    "submitted_via": {
+      "type": "string",
+      "enum": ["Web", "Referral", "Phone", "Postal mail", "Email", "Fax"],
+      "description": "How the complaint was submitted to the CFPB"
+    },
+    "tags": {
+      "type": ["string", "null"],
+      "description": "Data that supports easier searching and sorting of complaints"
+    },
+    "timely": {
+      "type": "string",
+      "enum": ["Yes", "No"],
+      "description": "Indicates whether the company gave a timely response"
+    },
+    "zip_code": {
+      "type": ["string", "null"],
+      "description": "The mailing ZIP code provided by the consumer"
+    }
+  },
+  "required": ["complaint_id", "company", "date_received", "product", "issue"]
+}

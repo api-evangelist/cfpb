@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cfpb/main/json-schema/cfpb-hmda-lar-schema.json",
+  "title": "HMDA Loan Application Register (LAR) Record",
+  "description": "A single Home Mortgage Disclosure Act Loan Application Register record as returned by the HMDA Data Browser API",
+  "type": "object",
+  "properties": {
+    "lei": {
+      "type": "string",
+      "description": "Legal Entity Identifier of the financial institution"
+    },
+    "loan_type": {
+      "type": "integer",
+      "description": "Type of covered loan (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)"
+    },
+    "loan_purpose": {
+      "type": "integer",
+      "description": "Loan purpose (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other, 5=Not applicable)"
+    },
+    "preapproval": {
+      "type": "integer",
+      "description": "Preapproval status (1=Preapproval requested, 2=Preapproval not requested)"
+    },
+    "construction_method": {
+      "type": "integer",
+      "description": "Construction method (1=Site-built, 2=Manufactured home)"
+    },
+    "occupancy_type": {
+      "type": "integer",
+      "description": "Occupancy type (1=Principal residence, 2=Second residence, 3=Investment property)"
+    },
+    "loan_amount": {
+      "type": "number",
+      "description": "Amount of the covered loan or application"
+    },
+    "action_taken": {
+      "type": "integer",
+      "description": "Action taken on the application (1=Originated, 2=Approved but not accepted, 3=Denied, 4=Withdrawn, 5=Closed for incompleteness, 6=Purchased, 7=Preapproval denied, 8=Preapproval approved but not accepted)"
+    },
+    "state_code": {
+      "type": "string",
+      "description": "Two-letter state code"
+    },
+    "county_code": {
+      "type": "string",
+      "description": "Five-digit FIPS county code"
+    },
+    "census_tract": {
+      "type": "string",
+      "description": "Census tract number"
+    },
+    "derived_ethnicity": {
+      "type": "string",
+      "description": "Derived ethnicity of the applicant"
+    },
+    "derived_race": {
+      "type": "string",
+      "description": "Derived race of the applicant"
+    },
+    "derived_sex": {
+      "type": "string",
+      "description": "Derived sex of the applicant"
+    },
+    "derived_loan_product_type": {
+      "type": "string",
+      "description": "Derived loan product type combining loan type and lien status"
+    },
+    "derived_dwelling_category": {
+      "type": "string",
+      "description": "Derived dwelling category combining construction method and occupancy type"
+    },
+    "activity_year": {
+      "type": "integer",
+      "description": "Calendar year the data covers"
+    },
+    "income": {
+      "type": ["integer", "null"],
+      "description": "Gross annual income of the applicant (in thousands)"
+    },
+    "rate_spread": {
+      "type": ["number", "null"],
+      "description": "Difference between the APR and the average prime offer rate"
+    },
+    "hoepa_status": {
+      "type": "integer",
+      "description": "HOEPA status (1=High-cost mortgage, 2=Not a high-cost mortgage, 3=Not applicable)"
+    },
+    "lien_status": {
+      "type": "integer",
+      "description": "Lien status (1=Secured by first lien, 2=Secured by subordinate lien)"
+    },
+    "loan_term": {
+      "type": ["integer", "null"],
+      "description": "Number of months after which the legal obligation matures"
+    },
+    "property_value": {
+      "type": ["number", "null"],
+      "description": "Value of the property securing the covered loan"
+    },
+    "interest_rate": {
+      "type": ["number", "null"],
+      "description": "Interest rate for the covered loan"
+    },
+    "total_loan_costs": {
+      "type": ["number", "null"],
+      "description": "Total loan costs as defined by Regulation Z"
+    },
+    "origination_charges": {
+      "type": ["number", "null"],
+      "description": "Origination charges"
+    },
+    "discount_points": {
+      "type": ["number", "null"],
+      "description": "Discount points"
+    },
+    "lender_credits": {
+      "type": ["number", "null"],
+      "description": "Lender credits"
+    }
+  },
+  "required": ["lei", "activity_year", "loan_type", "loan_purpose", "action_taken", "state_code"]
+}

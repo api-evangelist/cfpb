@@ -1,0 +1,19 @@
+{
+  "complaint_id": 5000000,
+  "company": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+  "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response",
+  "company_response": "Closed with explanation",
+  "complaint_what_happened": "I submitted a mortgage application and was not provided timely disclosures as required by law.",
+  "date_received": "2023-06-15",
+  "date_sent_to_company": "2023-06-15",
+  "has_narrative": true,
+  "issue": "Applying for a mortgage or refinancing an existing mortgage",
+  "product": "Mortgage",
+  "state": "CA",
+  "sub_issue": "Delays in the application process",
+  "sub_product": "Conventional home mortgage",
+  "submitted_via": "Web",
+  "tags": null,
+  "timely": "Yes",
+  "zip_code": "94105"
+}

@@ -1,0 +1,80 @@
+vocabulary:
+  - term: Consumer Complaint
+    definition: A formal submission by a consumer describing a problem with a financial product or service. The CFPB sends complaints to companies for response and publishes them in the Consumer Complaint Database.
+    source: https://www.consumerfinance.gov/consumer-tools/financial-well-being/
+
+  - term: Complaint Narrative
+    definition: The consumer's description of what happened, written in their own words. Narratives are published only if the consumer opts in and after the company has had the opportunity to respond.
+    source: https://cfpb.github.io/api/ccdb/fields.html
+
+  - term: HMDA
+    definition: Home Mortgage Disclosure Act. Federal law that requires many financial institutions to maintain, report, and publicly disclose loan-level information about mortgages.
+    source: https://www.consumerfinance.gov/data-research/hmda/
+
+  - term: LAR
+    definition: Loan Application Register. The data file format used by financial institutions to report individual mortgage records under HMDA. Each row represents one application or loan.
+    source: https://ffiec.cfpb.gov/documentation/category/developer-apis
+
+  - term: LEI
+    definition: Legal Entity Identifier. A 20-character alphanumeric code used to uniquely identify a legal entity that engages in financial transactions. Required for HMDA filing identification.
+    source: https://ffiec.cfpb.gov/
+
+  - term: FFIEC
+    definition: Federal Financial Institutions Examination Council. The interagency body that administers the HMDA platform and collects mortgage lending data from financial institutions.
+    source: https://www.ffiec.gov/
+
+  - term: MSA/MD
+    definition: Metropolitan Statistical Area / Metropolitan Division. A geographic unit used in HMDA reporting to identify the metropolitan area where a property is located.
+    source: https://ffiec.cfpb.gov/documentation/api/data-browser/
+
+  - term: Transmittal Sheet
+    definition: The header record in an HMDA LAR file that contains information about the financial institution and the filing, such as the institution name, LEI, tax ID, and total number of records.
+    source: https://ffiec.cfpb.gov/documentation/category/developer-apis
+
+  - term: Edit
+    definition: A data quality check applied to HMDA submissions. Edits are categorized as syntactical (format errors), validity (value out of valid range), quality (unusual values that may indicate an error), or macro (aggregate data review).
+    source: https://ffiec.cfpb.gov/documentation/category/developer-apis
+
+  - term: Syntactical Edit
+    definition: A HMDA edit that checks whether data is in the correct format, such as proper field lengths and valid codes. These must be corrected before submission is accepted.
+    source: https://ffiec.cfpb.gov/documentation/category/developer-apis
+
+  - term: Validity Edit
+    definition: A HMDA edit that checks whether reported values fall within the range of acceptable values. These must be corrected before submission is accepted.
+    source: https://ffiec.cfpb.gov/documentation/category/developer-apis
+
+  - term: Quality Edit
+    definition: A HMDA edit that flags values that are unusual and may indicate errors. Financial institutions may verify these edits rather than correct the data if the values are accurate.
+    source: https://ffiec.cfpb.gov/documentation/category/developer-apis
+
+  - term: Macro Edit
+    definition: A HMDA edit that reviews aggregate loan data to flag unusual patterns. Financial institutions may verify these edits rather than correct the data if the values are accurate.
+    source: https://ffiec.cfpb.gov/documentation/category/developer-apis
+
+  - term: Rate Spread
+    definition: The difference between the Annual Percentage Rate (APR) on a loan and the average prime offer rate, indicating whether a mortgage is higher-priced.
+    source: https://ffiec.cfpb.gov/
+
+  - term: HOEPA
+    definition: Home Ownership and Equity Protection Act. Amends TILA to provide protections for consumers in high-cost mortgage transactions. HMDA data includes whether a loan is a HOEPA high-cost mortgage.
+    source: https://www.consumerfinance.gov/
+
+  - term: Action Taken
+    definition: In HMDA data, the action the financial institution took on the application. Values include originated, approved but not accepted, denied, withdrawn, closed for incompleteness, purchased, or preapproval determinations.
+    source: https://ffiec.cfpb.gov/documentation/api/data-browser/
+
+  - term: OpenSearch
+    definition: The search and analytics engine (formerly Elasticsearch) used by the CFPB to index and serve Consumer Complaint Database queries.
+    source: https://cfpb.github.io/api/ccdb/
+
+  - term: Aggregation
+    definition: In the Consumer Complaint Database API, a grouped summary of complaints broken down by a specific field such as product, issue, company, or state.
+    source: https://cfpb.github.io/api/ccdb/api.html
+
+  - term: Trends
+    definition: Time-series aggregations of consumer complaint data, broken down by a lens (product, issue, company, tags, or overview) and trend interval (year, quarter, month, week, day).
+    source: https://cfpb.github.io/api/ccdb/api.html
+
+  - term: CFPB
+    definition: Consumer Financial Protection Bureau. A U.S. government agency created to protect consumers in the financial marketplace. Responsible for enforcing consumer financial laws and collecting consumer complaint and mortgage data.
+    source: https://www.consumerfinance.gov/

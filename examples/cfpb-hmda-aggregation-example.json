@@ -1,0 +1,23 @@
+{
+  "aggregations": [
+    {
+      "year": 2020,
+      "action_taken": 1,
+      "action_taken_name": "Loan originated",
+      "count": 24578,
+      "loan_amount": 5832100000
+    },
+    {
+      "year": 2020,
+      "action_taken": 3,
+      "action_taken_name": "Application denied",
+      "count": 3421,
+      "loan_amount": 789650000
+    }
+  ],
+  "parameters": {
+    "years": ["2020"],
+    "states": ["CA"],
+    "variables": ["action_taken"]
+  }
+}

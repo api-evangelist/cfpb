@@ -34,6 +34,8 @@ apis:
         url: https://cfpb.github.io/ccdb5-api/documentation/
       - type: GitHubRepository
         url: https://github.com/cfpb/ccdb5-api
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/cfpb/main/openapi/cfpb-consumer-complaint-database-api-openapi.yml
   - aid: cfpb:hmda-data-browser-api
     name: HMDA Data Browser API
     description: Provides access to Home Mortgage Disclosure Act (HMDA) data, enabling aggregation reports and CSV downloads of mortgage lending records filtered by geography (state, county, MSA/MD), financial institution LEI, and year. Supports nationwide and regional queries for analyzing mortgage lending patterns and fair lending compliance.
@@ -50,6 +52,8 @@ apis:
         url: https://ffiec.cfpb.gov/documentation/api/data-browser/
       - type: GitHubRepository
         url: https://github.com/cfpb/hmda-platform
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/cfpb/main/openapi/cfpb-hmda-data-browser-api-openapi.yml
   - aid: cfpb:hmda-filing-api
     name: HMDA Platform Filing API
     description: Enables financial institutions to submit Home Mortgage Disclosure Act (HMDA) data programmatically to the FFIEC HMDA Platform. Provides endpoints for filing submissions, uploading loan application register (LAR) files, checking submission status, and retrieving edit reports for regulatory compliance.
@@ -66,6 +70,8 @@ apis:
         url: https://ffiec.cfpb.gov/documentation/category/developer-apis
       - type: GitHubRepository
         url: https://github.com/cfpb/hmda-platform
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/cfpb/main/openapi/cfpb-hmda-filing-api-openapi.yml
 common:
   - type: Website
     url: https://www.consumerfinance.gov/

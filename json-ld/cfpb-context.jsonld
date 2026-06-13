@@ -1,0 +1,169 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "cfpb": "https://www.consumerfinance.gov/vocabulary/",
+    "hmda": "https://ffiec.cfpb.gov/vocabulary/",
+
+    "Complaint": "cfpb:Complaint",
+    "complaint_id": {
+      "@id": "cfpb:complaintId",
+      "@type": "xsd:integer"
+    },
+    "company": {
+      "@id": "cfpb:company",
+      "@type": "xsd:string"
+    },
+    "company_public_response": {
+      "@id": "cfpb:companyPublicResponse",
+      "@type": "xsd:string"
+    },
+    "company_response": {
+      "@id": "cfpb:companyResponse",
+      "@type": "xsd:string"
+    },
+    "complaint_what_happened": {
+      "@id": "cfpb:complaintNarrative",
+      "@type": "xsd:string"
+    },
+    "date_received": {
+      "@id": "cfpb:dateReceived",
+      "@type": "xsd:date"
+    },
+    "date_sent_to_company": {
+      "@id": "cfpb:dateSentToCompany",
+      "@type": "xsd:date"
+    },
+    "has_narrative": {
+      "@id": "cfpb:hasNarrative",
+      "@type": "xsd:boolean"
+    },
+    "issue": {
+      "@id": "cfpb:issue",
+      "@type": "xsd:string"
+    },
+    "sub_issue": {
+      "@id": "cfpb:subIssue",
+      "@type": "xsd:string"
+    },
+    "product": {
+      "@id": "cfpb:product",
+      "@type": "xsd:string"
+    },
+    "sub_product": {
+      "@id": "cfpb:subProduct",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "zip_code": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "submitted_via": {
+      "@id": "cfpb:submittedVia",
+      "@type": "xsd:string"
+    },
+    "timely": {
+      "@id": "cfpb:timelyResponse",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "cfpb:tags",
+      "@type": "xsd:string"
+    },
+
+    "HMDARecord": "hmda:LoanApplicationRecord",
+    "lei": {
+      "@id": "hmda:legalEntityIdentifier",
+      "@type": "xsd:string"
+    },
+    "loan_type": {
+      "@id": "hmda:loanType",
+      "@type": "xsd:integer"
+    },
+    "loan_purpose": {
+      "@id": "hmda:loanPurpose",
+      "@type": "xsd:integer"
+    },
+    "action_taken": {
+      "@id": "hmda:actionTaken",
+      "@type": "xsd:integer"
+    },
+    "loan_amount": {
+      "@id": "hmda:loanAmount",
+      "@type": "xsd:decimal"
+    },
+    "state_code": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "county_code": {
+      "@id": "hmda:countyCode",
+      "@type": "xsd:string"
+    },
+    "census_tract": {
+      "@id": "hmda:censusTract",
+      "@type": "xsd:string"
+    },
+    "activity_year": {
+      "@id": "hmda:activityYear",
+      "@type": "xsd:integer"
+    },
+    "income": {
+      "@id": "hmda:applicantIncome",
+      "@type": "xsd:integer"
+    },
+    "rate_spread": {
+      "@id": "hmda:rateSpread",
+      "@type": "xsd:decimal"
+    },
+    "lien_status": {
+      "@id": "hmda:lienStatus",
+      "@type": "xsd:integer"
+    },
+    "loan_term": {
+      "@id": "hmda:loanTerm",
+      "@type": "xsd:integer"
+    },
+    "property_value": {
+      "@id": "hmda:propertyValue",
+      "@type": "xsd:decimal"
+    },
+    "interest_rate": {
+      "@id": "hmda:interestRate",
+      "@type": "xsd:decimal"
+    },
+    "derived_ethnicity": {
+      "@id": "hmda:derivedEthnicity",
+      "@type": "xsd:string"
+    },
+    "derived_race": {
+      "@id": "hmda:derivedRace",
+      "@type": "xsd:string"
+    },
+    "derived_sex": {
+      "@id": "hmda:derivedSex",
+      "@type": "xsd:string"
+    },
+    "derived_loan_product_type": {
+      "@id": "hmda:derivedLoanProductType",
+      "@type": "xsd:string"
+    },
+    "derived_dwelling_category": {
+      "@id": "hmda:derivedDwellingCategory",
+      "@type": "xsd:string"
+    },
+    "construction_method": {
+      "@id": "hmda:constructionMethod",
+      "@type": "xsd:integer"
+    },
+    "hoepa_status": {
+      "@id": "hmda:hoepaStatus",
+      "@type": "xsd:integer"
+    }
+  }
+}

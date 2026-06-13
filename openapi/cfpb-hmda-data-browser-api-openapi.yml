@@ -1,0 +1,296 @@
+openapi: 3.0.0
+info:
+  version: 2.0.0
+  title: HMDA Data Browser API
+  description: Provides access to Home Mortgage Disclosure Act (HMDA) data, enabling aggregation reports and CSV downloads of mortgage lending records filtered by geography, financial institution LEI, and year.
+  contact:
+    name: FFIEC HMDA Help
+    url: https://ffiec.cfpb.gov/
+  license:
+    name: Creative Commons CC0
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+servers:
+  - url: 'https://ffiec.cfpb.gov/v2/data-browser-api'
+    description: Production server
+tags:
+  - name: Aggregations
+    description: Aggregated HMDA data reports
+  - name: CSV
+    description: HMDA data as CSV downloads
+  - name: Filers
+    description: HMDA filing institution information
+paths:
+  /view/nationwide/aggregations:
+    get:
+      tags:
+        - Aggregations
+      summary: Nationwide aggregation report
+      description: Returns an aggregated HMDA data report for the entire nation filtered by the specified variables.
+      parameters:
+        - $ref: '#/components/parameters/years'
+        - $ref: '#/components/parameters/variables'
+        - $ref: '#/components/parameters/actions_taken'
+        - $ref: '#/components/parameters/construction_methods'
+        - $ref: '#/components/parameters/derived_dwelling_categories'
+        - $ref: '#/components/parameters/derived_loan_product_types'
+        - $ref: '#/components/parameters/ethnicities'
+        - $ref: '#/components/parameters/lien_statuses'
+        - $ref: '#/components/parameters/loan_purposes'
+        - $ref: '#/components/parameters/loan_types'
+        - $ref: '#/components/parameters/races'
+        - $ref: '#/components/parameters/sexes'
+      responses:
+        '200':
+          description: Successful aggregation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregationResult'
+        '400':
+          description: Bad request - invalid parameters
+  /view/aggregations:
+    get:
+      tags:
+        - Aggregations
+      summary: Aggregation report by geography or LEI
+      description: Returns an aggregated HMDA data report filtered by state, county, MSA/MD, or LEI and the specified variables.
+      parameters:
+        - $ref: '#/components/parameters/years'
+        - $ref: '#/components/parameters/variables'
+        - $ref: '#/components/parameters/states'
+        - $ref: '#/components/parameters/counties'
+        - $ref: '#/components/parameters/msamds'
+        - $ref: '#/components/parameters/leis'
+        - $ref: '#/components/parameters/actions_taken'
+        - $ref: '#/components/parameters/construction_methods'
+        - $ref: '#/components/parameters/derived_dwelling_categories'
+        - $ref: '#/components/parameters/derived_loan_product_types'
+        - $ref: '#/components/parameters/ethnicities'
+        - $ref: '#/components/parameters/lien_statuses'
+        - $ref: '#/components/parameters/loan_purposes'
+        - $ref: '#/components/parameters/loan_types'
+        - $ref: '#/components/parameters/races'
+        - $ref: '#/components/parameters/sexes'
+      responses:
+        '200':
+          description: Successful aggregation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregationResult'
+        '400':
+          description: Bad request - invalid parameters
+  /view/nationwide/csv:
+    get:
+      tags:
+        - CSV
+      summary: Nationwide data subset as CSV
+      description: Returns a CSV download of HMDA data for the entire nation filtered by the specified variables.
+      parameters:
+        - $ref: '#/components/parameters/years'
+        - $ref: '#/components/parameters/actions_taken'
+        - $ref: '#/components/parameters/construction_methods'
+        - $ref: '#/components/parameters/derived_dwelling_categories'
+        - $ref: '#/components/parameters/derived_loan_product_types'
+        - $ref: '#/components/parameters/ethnicities'
+        - $ref: '#/components/parameters/lien_statuses'
+        - $ref: '#/components/parameters/loan_purposes'
+        - $ref: '#/components/parameters/loan_types'
+        - $ref: '#/components/parameters/races'
+        - $ref: '#/components/parameters/sexes'
+      responses:
+        '200':
+          description: CSV data response
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request - invalid parameters
+  /view/csv:
+    get:
+      tags:
+        - CSV
+      summary: Data subset as CSV by geography or LEI
+      description: Returns a CSV download of HMDA data filtered by state, county, MSA/MD, or LEI and the specified variables.
+      parameters:
+        - $ref: '#/components/parameters/years'
+        - $ref: '#/components/parameters/states'
+        - $ref: '#/components/parameters/counties'
+        - $ref: '#/components/parameters/msamds'
+        - $ref: '#/components/parameters/leis'
+        - $ref: '#/components/parameters/actions_taken'
+        - $ref: '#/components/parameters/construction_methods'
+        - $ref: '#/components/parameters/derived_dwelling_categories'
+        - $ref: '#/components/parameters/derived_loan_product_types'
+        - $ref: '#/components/parameters/ethnicities'
+        - $ref: '#/components/parameters/lien_statuses'
+        - $ref: '#/components/parameters/loan_purposes'
+        - $ref: '#/components/parameters/loan_types'
+        - $ref: '#/components/parameters/races'
+        - $ref: '#/components/parameters/sexes'
+      responses:
+        '200':
+          description: CSV data response
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request - invalid parameters
+  /view/filers:
+    get:
+      tags:
+        - Filers
+      summary: List HMDA filers
+      description: Returns a list of financial institutions that filed HMDA data for the specified year(s) and geography or LEI filters.
+      parameters:
+        - $ref: '#/components/parameters/years'
+        - $ref: '#/components/parameters/states'
+        - $ref: '#/components/parameters/counties'
+        - $ref: '#/components/parameters/msamds'
+        - $ref: '#/components/parameters/leis'
+      responses:
+        '200':
+          description: List of HMDA filers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilersResult'
+        '400':
+          description: Bad request - invalid parameters
+security: []
+components:
+  parameters:
+    years:
+      name: years
+      in: query
+      required: true
+      description: Comma-separated list of years (e.g. 2018,2019,2020)
+      schema:
+        type: string
+        example: '2020'
+    variables:
+      name: variables
+      in: query
+      description: Comma-separated list of variables to aggregate by (e.g. action_taken,loan_type)
+      schema:
+        type: string
+    states:
+      name: states
+      in: query
+      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
+      schema:
+        type: string
+    counties:
+      name: counties
+      in: query
+      description: Comma-separated list of 5-digit FIPS county codes
+      schema:
+        type: string
+    msamds:
+      name: msamds
+      in: query
+      description: Comma-separated list of 5-digit MSA/MD codes
+      schema:
+        type: string
+    leis:
+      name: leis
+      in: query
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
+      schema:
+        type: string
+    actions_taken:
+      name: actions_taken
+      in: query
+      description: Comma-separated list of action taken codes (1-8)
+      schema:
+        type: string
+    construction_methods:
+      name: construction_methods
+      in: query
+      description: Comma-separated list of construction method codes (1=Site Built, 2=Manufactured)
+      schema:
+        type: string
+    derived_dwelling_categories:
+      name: derived_dwelling_categories
+      in: query
+      description: Comma-separated list of derived dwelling category codes
+      schema:
+        type: string
+    derived_loan_product_types:
+      name: derived_loan_product_types
+      in: query
+      description: Comma-separated list of derived loan product type codes
+      schema:
+        type: string
+    ethnicities:
+      name: ethnicities
+      in: query
+      description: Comma-separated list of ethnicity codes
+      schema:
+        type: string
+    lien_statuses:
+      name: lien_statuses
+      in: query
+      description: Comma-separated list of lien status codes (1=First lien, 2=Subordinate lien)
+      schema:
+        type: string
+    loan_purposes:
+      name: loan_purposes
+      in: query
+      description: Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)
+      schema:
+        type: string
+    loan_types:
+      name: loan_types
+      in: query
+      description: Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)
+      schema:
+        type: string
+    races:
+      name: races
+      in: query
+      description: Comma-separated list of race codes
+      schema:
+        type: string
+    sexes:
+      name: sexes
+      in: query
+      description: Comma-separated list of sex codes (1=Male, 2=Female, 3=Information not provided, 4=Not applicable)
+      schema:
+        type: string
+  schemas:
+    AggregationResult:
+      type: object
+      properties:
+        aggregations:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        parameters:
+          type: object
+          description: The parameters used for the aggregation query
+          additionalProperties: true
+    FilersResult:
+      type: object
+      properties:
+        institutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Institution'
+    Institution:
+      type: object
+      properties:
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        name:
+          type: string
+          description: Institution name
+        period:
+          type: string
+          description: Filing period year
