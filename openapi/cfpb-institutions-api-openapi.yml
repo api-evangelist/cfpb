@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Consumer Complaint Database Aggregations Institutions API
+  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
+  termsOfService: https://cfpb.github.io/source-code-policy/
+  contact:
+    name: Report API Issues
+    url: https://github.com/cfpb/ccdb5-api/issues
+  license:
+    name: Creative Commons License CC0
+    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+servers:
+- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+  description: Production server
+security: []
+tags:
+- name: Institutions
+  description: Financial institution information
+paths:
+  /institutions/{lei}:
+    get:
+      tags:
+      - Institutions
+      summary: Get institution by LEI
+      description: Returns institution details and list of filings for the given Legal Entity Identifier
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      responses:
+        '200':
+          description: Institution details with filings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Institution'
+        '404':
+          description: Institution not found
+components:
+  schemas:
+    FilingStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
+    Institution:
+      type: object
+      properties:
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        agencyCode:
+          type: integer
+          description: Agency code
+        activityYear:
+          type: integer
+          description: Activity year
+        institutionType:
+          type: integer
+          description: Institution type code
+        hmdaFiler:
+          type: boolean
+          description: Whether institution is a HMDA filer
+        respondentName:
+          type: string
+          description: Name of the responding institution
+        filings:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilingSummary'
+    FilingSummary:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Filing period year
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        status:
+          $ref: '#/components/schemas/FilingStatus'
+  parameters:
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
+externalDocs:
+  description: Additional API Information
+  url: https://cfpb.github.io/api/ccdb/

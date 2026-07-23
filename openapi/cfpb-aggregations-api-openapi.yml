@@ -1,0 +1,196 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Consumer Complaint Database Aggregations API
+  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
+  termsOfService: https://cfpb.github.io/source-code-policy/
+  contact:
+    name: Report API Issues
+    url: https://github.com/cfpb/ccdb5-api/issues
+  license:
+    name: Creative Commons License CC0
+    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+servers:
+- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+  description: Production server
+security: []
+tags:
+- name: Aggregations
+  description: Aggregated HMDA data reports
+paths:
+  /view/nationwide/aggregations:
+    get:
+      tags:
+      - Aggregations
+      summary: Nationwide aggregation report
+      description: Returns an aggregated HMDA data report for the entire nation filtered by the specified variables.
+      parameters:
+      - $ref: '#/components/parameters/years'
+      - $ref: '#/components/parameters/variables'
+      - $ref: '#/components/parameters/actions_taken'
+      - $ref: '#/components/parameters/construction_methods'
+      - $ref: '#/components/parameters/derived_dwelling_categories'
+      - $ref: '#/components/parameters/derived_loan_product_types'
+      - $ref: '#/components/parameters/ethnicities'
+      - $ref: '#/components/parameters/lien_statuses'
+      - $ref: '#/components/parameters/loan_purposes'
+      - $ref: '#/components/parameters/loan_types'
+      - $ref: '#/components/parameters/races'
+      - $ref: '#/components/parameters/sexes'
+      responses:
+        '200':
+          description: Successful aggregation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregationResult'
+        '400':
+          description: Bad request - invalid parameters
+  /view/aggregations:
+    get:
+      tags:
+      - Aggregations
+      summary: Aggregation report by geography or LEI
+      description: Returns an aggregated HMDA data report filtered by state, county, MSA/MD, or LEI and the specified variables.
+      parameters:
+      - $ref: '#/components/parameters/years'
+      - $ref: '#/components/parameters/variables'
+      - $ref: '#/components/parameters/states'
+      - $ref: '#/components/parameters/counties'
+      - $ref: '#/components/parameters/msamds'
+      - $ref: '#/components/parameters/leis'
+      - $ref: '#/components/parameters/actions_taken'
+      - $ref: '#/components/parameters/construction_methods'
+      - $ref: '#/components/parameters/derived_dwelling_categories'
+      - $ref: '#/components/parameters/derived_loan_product_types'
+      - $ref: '#/components/parameters/ethnicities'
+      - $ref: '#/components/parameters/lien_statuses'
+      - $ref: '#/components/parameters/loan_purposes'
+      - $ref: '#/components/parameters/loan_types'
+      - $ref: '#/components/parameters/races'
+      - $ref: '#/components/parameters/sexes'
+      responses:
+        '200':
+          description: Successful aggregation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregationResult'
+        '400':
+          description: Bad request - invalid parameters
+components:
+  parameters:
+    ethnicities:
+      name: ethnicities
+      in: query
+      description: Comma-separated list of ethnicity codes
+      schema:
+        type: string
+    derived_loan_product_types:
+      name: derived_loan_product_types
+      in: query
+      description: Comma-separated list of derived loan product type codes
+      schema:
+        type: string
+    actions_taken:
+      name: actions_taken
+      in: query
+      description: Comma-separated list of action taken codes (1-8)
+      schema:
+        type: string
+    loan_types:
+      name: loan_types
+      in: query
+      description: Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)
+      schema:
+        type: string
+    variables:
+      name: variables
+      in: query
+      description: Comma-separated list of variables to aggregate by (e.g. action_taken,loan_type)
+      schema:
+        type: string
+    counties:
+      name: counties
+      in: query
+      description: Comma-separated list of 5-digit FIPS county codes
+      schema:
+        type: string
+    states:
+      name: states
+      in: query
+      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
+      schema:
+        type: string
+    sexes:
+      name: sexes
+      in: query
+      description: Comma-separated list of sex codes (1=Male, 2=Female, 3=Information not provided, 4=Not applicable)
+      schema:
+        type: string
+    loan_purposes:
+      name: loan_purposes
+      in: query
+      description: Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)
+      schema:
+        type: string
+    lien_statuses:
+      name: lien_statuses
+      in: query
+      description: Comma-separated list of lien status codes (1=First lien, 2=Subordinate lien)
+      schema:
+        type: string
+    construction_methods:
+      name: construction_methods
+      in: query
+      description: Comma-separated list of construction method codes (1=Site Built, 2=Manufactured)
+      schema:
+        type: string
+    races:
+      name: races
+      in: query
+      description: Comma-separated list of race codes
+      schema:
+        type: string
+    years:
+      name: years
+      in: query
+      required: true
+      description: Comma-separated list of years (e.g. 2018,2019,2020)
+      schema:
+        type: string
+        example: '2020'
+    leis:
+      name: leis
+      in: query
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
+      schema:
+        type: string
+    derived_dwelling_categories:
+      name: derived_dwelling_categories
+      in: query
+      description: Comma-separated list of derived dwelling category codes
+      schema:
+        type: string
+    msamds:
+      name: msamds
+      in: query
+      description: Comma-separated list of 5-digit MSA/MD codes
+      schema:
+        type: string
+  schemas:
+    AggregationResult:
+      type: object
+      properties:
+        aggregations:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        parameters:
+          type: object
+          description: The parameters used for the aggregation query
+          additionalProperties: true
+externalDocs:
+  description: Additional API Information
+  url: https://cfpb.github.io/api/ccdb/

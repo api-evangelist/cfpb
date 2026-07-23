@@ -1,0 +1,262 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Consumer Complaint Database Aggregations Submissions API
+  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
+  termsOfService: https://cfpb.github.io/source-code-policy/
+  contact:
+    name: Report API Issues
+    url: https://github.com/cfpb/ccdb5-api/issues
+  license:
+    name: Creative Commons License CC0
+    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+servers:
+- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+  description: Production server
+security: []
+tags:
+- name: Submissions
+  description: HMDA data submission management
+paths:
+  /institutions/{lei}/filings/{period}/submissions:
+    post:
+      tags:
+      - Submissions
+      summary: Create new submission
+      description: Creates a new submission for the filing identified by LEI and period
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      responses:
+        '201':
+          description: Submission created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '400':
+          description: Bad request
+  /institutions/{lei}/filings/{period}/submissions/latest:
+    get:
+      tags:
+      - Submissions
+      summary: Get latest submission
+      description: Returns the most recent submission for the given institution and filing period
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      responses:
+        '200':
+          description: Latest submission details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '404':
+          description: No submissions found
+  /institutions/{lei}/filings/{period}/submissions/{submissionId}:
+    post:
+      tags:
+      - Submissions
+      summary: Upload HMDA data file
+      description: Uploads a HMDA LAR (Loan Application Register) file for the given submission
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: HMDA LAR file (pipe-delimited format)
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '400':
+          description: Invalid file format
+        '404':
+          description: Submission not found
+  /institutions/{lei}/filings/{period}/submissions/{submissionId}/sign:
+    get:
+      tags:
+      - Submissions
+      summary: Get submission signature receipt
+      description: Returns the signature receipt for a submission
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      responses:
+        '200':
+          description: Submission receipt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureReceipt'
+        '404':
+          description: Submission not found
+    post:
+      tags:
+      - Submissions
+      summary: Sign submission
+      description: Signs and finalizes a submission after all edits have been verified
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                signed:
+                  type: boolean
+                  description: Whether the submission is being signed
+      responses:
+        '200':
+          description: Submission signed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureReceipt'
+        '400':
+          description: Submission cannot be signed (edits not verified)
+        '404':
+          description: Submission not found
+  /institutions/{lei}/filings/{period}/submissions/{submissionId}/summary:
+    get:
+      tags:
+      - Submissions
+      summary: Get submission summary
+      description: Returns submission details plus transmittal sheet information
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      responses:
+        '200':
+          description: Submission summary with transmittal sheet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionSummary'
+        '404':
+          description: Submission not found
+components:
+  parameters:
+    submissionId:
+      name: submissionId
+      in: path
+      required: true
+      description: Submission identifier
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD-2020-1
+    period:
+      name: period
+      in: path
+      required: true
+      description: Filing period (year, e.g. 2020)
+      schema:
+        type: string
+        example: '2020'
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
+  schemas:
+    SubmissionSummary:
+      type: object
+      properties:
+        submission:
+          $ref: '#/components/schemas/Submission'
+        transmittalSheet:
+          $ref: '#/components/schemas/TransmittalSheet'
+    SignatureReceipt:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp of signing
+        receipt:
+          type: string
+          description: Receipt code
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+    Submission:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Submission identifier
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        start:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission started
+        end:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission ended
+    TransmittalSheet:
+      type: object
+      properties:
+        institutionName:
+          type: string
+          description: Name of the institution
+        year:
+          type: integer
+          description: Activity year
+        quarter:
+          type: integer
+          description: Quarter (if quarterly filing)
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        taxId:
+          type: string
+          description: Tax ID
+        totalLines:
+          type: integer
+          description: Total number of LAR lines
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+            phone:
+              type: string
+            email:
+              type: string
+            address:
+              type: object
+    SubmissionStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
+externalDocs:
+  description: Additional API Information
+  url: https://cfpb.github.io/api/ccdb/

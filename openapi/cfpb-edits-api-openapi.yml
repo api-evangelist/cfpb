@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Consumer Complaint Database Aggregations Edits API
+  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
+  termsOfService: https://cfpb.github.io/source-code-policy/
+  contact:
+    name: Report API Issues
+    url: https://github.com/cfpb/ccdb5-api/issues
+  license:
+    name: Creative Commons License CC0
+    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+servers:
+- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+  description: Production server
+security: []
+tags:
+- name: Edits
+  description: Submission edit and validation reports
+paths:
+  /institutions/{lei}/filings/{period}/submissions/{submissionId}/parseErrors:
+    get:
+      tags:
+      - Edits
+      summary: Get parse errors for submission
+      description: Returns parse errors for the transmittal sheet and LAR records in a submission
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      - name: page
+        in: query
+        description: Page number (page size is 20)
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Parse errors with pagination metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseErrors'
+        '404':
+          description: Submission not found
+  /institutions/{lei}/filings/{period}/submissions/{submissionId}/edits:
+    get:
+      tags:
+      - Edits
+      summary: Get all edits for submission
+      description: Returns edits grouped by type (syntactical, validity, quality, macro) for a submission
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      responses:
+        '200':
+          description: Edits grouped by type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Edits'
+        '404':
+          description: Submission not found
+  /institutions/{lei}/filings/{period}/submissions/{submissionId}/edits/{editType}:
+    post:
+      tags:
+      - Edits
+      summary: Verify quality or macro edits
+      description: Marks quality or macro edits as verified for a submission
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      - name: editType
+        in: path
+        required: true
+        description: The type of edit to verify (quality or macro)
+        schema:
+          type: string
+          enum:
+          - quality
+          - macro
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verified:
+                  type: boolean
+                  description: Whether the edits have been verified
+      responses:
+        '200':
+          description: Edit verification status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditVerification'
+        '404':
+          description: Submission not found
+  /institutions/{lei}/filings/{period}/submissions/{submissionId}/edits/{editName}:
+    get:
+      tags:
+      - Edits
+      summary: Get edit details
+      description: Returns details for a specific edit including affected rows, field names and values, and pagination links
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      - $ref: '#/components/parameters/period'
+      - $ref: '#/components/parameters/submissionId'
+      - name: editName
+        in: path
+        required: true
+        description: The name of the specific edit
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Edit details with affected rows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditDetail'
+        '404':
+          description: Edit not found
+components:
+  parameters:
+    submissionId:
+      name: submissionId
+      in: path
+      required: true
+      description: Submission identifier
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD-2020-1
+    period:
+      name: period
+      in: path
+      required: true
+      description: Filing period (year, e.g. 2020)
+      schema:
+        type: string
+        example: '2020'
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
+  schemas:
+    Edit:
+      type: object
+      properties:
+        edit:
+          type: string
+          description: Edit name/code
+        description:
+          type: string
+          description: Edit description
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    EditVerification:
+      type: object
+      properties:
+        verified:
+          type: boolean
+          description: Whether the edits are verified
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+    PaginationLinks:
+      type: object
+      properties:
+        href:
+          type: string
+          description: Template URL for pagination
+        self:
+          type: string
+          description: URL for current page
+        next:
+          type: string
+          description: URL for next page
+        prev:
+          type: string
+          description: URL for previous page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
+    EditDetail:
+      type: object
+      properties:
+        edit:
+          type: string
+          description: Edit name
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        _links:
+          $ref: '#/components/schemas/PaginationLinks'
+    EditGroup:
+      type: object
+      properties:
+        edits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Edit'
+        verified:
+          type: boolean
+          description: Whether these edits have been verified (quality and macro only)
+    ParseErrors:
+      type: object
+      properties:
+        transmittalSheetErrors:
+          type: array
+          items:
+            type: string
+          description: Errors in the transmittal sheet
+        larErrors:
+          type: array
+          items:
+            type: object
+            properties:
+              lineNumber:
+                type: integer
+              errors:
+                type: array
+                items:
+                  type: string
+        count:
+          type: integer
+          description: Total number of errors
+        total:
+          type: integer
+          description: Total number of records with errors
+        _links:
+          $ref: '#/components/schemas/PaginationLinks'
+    Edits:
+      type: object
+      properties:
+        syntactical:
+          $ref: '#/components/schemas/EditGroup'
+        validity:
+          $ref: '#/components/schemas/EditGroup'
+        quality:
+          $ref: '#/components/schemas/EditGroup'
+        macro:
+          $ref: '#/components/schemas/EditGroup'
+    SubmissionStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
+externalDocs:
+  description: Additional API Information
+  url: https://cfpb.github.io/api/ccdb/

@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Consumer Complaint Database Aggregations Filers API
+  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
+  termsOfService: https://cfpb.github.io/source-code-policy/
+  contact:
+    name: Report API Issues
+    url: https://github.com/cfpb/ccdb5-api/issues
+  license:
+    name: Creative Commons License CC0
+    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+servers:
+- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+  description: Production server
+security: []
+tags:
+- name: Filers
+  description: HMDA filing institution information
+paths:
+  /view/filers:
+    get:
+      tags:
+      - Filers
+      summary: List HMDA filers
+      description: Returns a list of financial institutions that filed HMDA data for the specified year(s) and geography or LEI filters.
+      parameters:
+      - $ref: '#/components/parameters/years'
+      - $ref: '#/components/parameters/states'
+      - $ref: '#/components/parameters/counties'
+      - $ref: '#/components/parameters/msamds'
+      - $ref: '#/components/parameters/leis'
+      responses:
+        '200':
+          description: List of HMDA filers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilersResult'
+        '400':
+          description: Bad request - invalid parameters
+components:
+  parameters:
+    msamds:
+      name: msamds
+      in: query
+      description: Comma-separated list of 5-digit MSA/MD codes
+      schema:
+        type: string
+    counties:
+      name: counties
+      in: query
+      description: Comma-separated list of 5-digit FIPS county codes
+      schema:
+        type: string
+    states:
+      name: states
+      in: query
+      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
+      schema:
+        type: string
+    leis:
+      name: leis
+      in: query
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
+      schema:
+        type: string
+    years:
+      name: years
+      in: query
+      required: true
+      description: Comma-separated list of years (e.g. 2018,2019,2020)
+      schema:
+        type: string
+        example: '2020'
+  schemas:
+    FilersResult:
+      type: object
+      properties:
+        institutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Institution'
+    Institution:
+      type: object
+      properties:
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        name:
+          type: string
+          description: Institution name
+        period:
+          type: string
+          description: Filing period year
+externalDocs:
+  description: Additional API Information
+  url: https://cfpb.github.io/api/ccdb/

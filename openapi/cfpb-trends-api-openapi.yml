@@ -1,0 +1,325 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Consumer Complaint Database Aggregations Trends API
+  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
+  termsOfService: https://cfpb.github.io/source-code-policy/
+  contact:
+    name: Report API Issues
+    url: https://github.com/cfpb/ccdb5-api/issues
+  license:
+    name: Creative Commons License CC0
+    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+servers:
+- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+  description: Production server
+security: []
+tags:
+- name: Trends
+  description: These endpoints provide access aggregated consumer complaint data
+paths:
+  /trends:
+    get:
+      tags:
+      - Trends
+      summary: List trends
+      description: Return specific aggregations for a search
+      parameters:
+      - $ref: '#/components/parameters/search_term'
+      - $ref: '#/components/parameters/field'
+      - $ref: '#/components/parameters/company'
+      - $ref: '#/components/parameters/company_public_response'
+      - $ref: '#/components/parameters/company_received_max'
+      - $ref: '#/components/parameters/company_received_min'
+      - $ref: '#/components/parameters/company_response'
+      - $ref: '#/components/parameters/date_received_max'
+      - $ref: '#/components/parameters/date_received_min'
+      - $ref: '#/components/parameters/focus'
+      - $ref: '#/components/parameters/has_narrative'
+      - $ref: '#/components/parameters/issue'
+      - $ref: '#/components/parameters/lens'
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/state'
+      - $ref: '#/components/parameters/submitted_via'
+      - $ref: '#/components/parameters/sub_lens'
+      - $ref: '#/components/parameters/sub_lens_depth'
+      - $ref: '#/components/parameters/tags'
+      - $ref: '#/components/parameters/timely'
+      - $ref: '#/components/parameters/trend_depth'
+      - $ref: '#/components/parameters/trend_interval'
+      - $ref: '#/components/parameters/zip_code'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendsResult'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/TrendsResult'
+        '400':
+          description: Invalid status value
+components:
+  parameters:
+    trend_interval:
+      name: trend_interval
+      in: query
+      description: The interval of time to use for trends aggregations histograms.
+      required: true
+      schema:
+        type: string
+        enum:
+        - year
+        - quarter
+        - month
+        - week
+        - day
+    company_received_max:
+      name: company_received_max
+      in: query
+      description: Return results with date < company_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    zip_code:
+      name: zip_code
+      in: query
+      description: Filter the results to only return these zip codes
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    lens:
+      name: lens
+      in: query
+      required: true
+      description: The data lens through which to view complaint trends over time.
+      schema:
+        type: string
+        enum:
+        - overview
+        - issue
+        - product
+        - tags
+        default: overview
+    timely:
+      name: timely
+      in: query
+      description: Filter the results to show whether a response was timely
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_public_response:
+      name: company_public_response
+      in: query
+      description: Filter the results to only return these types of public response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    field:
+      name: field
+      in: query
+      description: If the parameter "search_term" has a value, use "field" to specify which field is searched. If not specified, "complaint_what_happened" will be searched.
+      schema:
+        type: string
+        enum:
+        - complaint_what_happened
+        - company_public_response
+        - all
+        default: complaint_what_happened
+    submitted_via:
+      name: submitted_via
+      in: query
+      description: Filter the results to only return these types of way consumers submitted their complaints
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    tags:
+      name: tags
+      in: query
+      description: Filter the results to only return these types of tag
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company:
+      name: company
+      in: query
+      description: Filter the results to only return these companies
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    trend_depth:
+      name: trend_depth
+      in: query
+      description: The top X trend aggregations will be returned, where X is the supplied trend_depth.
+      schema:
+        type: integer
+        maximum: 10000000
+        minimum: 5
+        format: int64
+        default: 10
+    state:
+      name: state
+      in: query
+      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    product:
+      name: product
+      in: query
+      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    issue:
+      name: issue
+      in: query
+      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_received_min:
+      name: company_received_min
+      in: query
+      description: Return results with date >= company_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    company_response:
+      name: company_response
+      in: query
+      description: Filter the results to only return these types of response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    focus:
+      name: focus
+      in: query
+      description: The name of the product or company on which to focus charts for products and issues
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    date_received_max:
+      name: date_received_max
+      in: query
+      description: Return results with date < date_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    search_term:
+      name: search_term
+      in: query
+      description: Return results containing specific term
+      schema:
+        type: string
+    sub_lens:
+      name: sub_lens
+      in: query
+      description: The sub-lens through which to view complaint trends over time.
+      schema:
+        type: string
+        enum:
+        - issue
+        - product
+        - sub_product
+        - sub_issue
+        - tags
+    date_received_min:
+      name: date_received_min
+      in: query
+      description: Return results with date >= date_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    has_narrative:
+      name: has_narrative
+      in: query
+      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    sub_lens_depth:
+      name: sub_lens_depth
+      in: query
+      description: The top X trend sub aggregations will be returned, where X is the supplied sub_lens_depth.
+      schema:
+        type: integer
+        maximum: 10000000
+        minimum: 5
+        format: int64
+        default: 10
+  schemas:
+    MultiLevelAggregation:
+      type: object
+      properties:
+        doc_count:
+          type: integer
+          description: The total number of complaints covered in this aggregation
+        field:
+          type: object
+          description: The name of the field being aggregated
+          properties:
+            buckets:
+              type: array
+              items:
+                $ref: '#/components/schemas/MultiLevelBucket'
+            doc_count_error_upper_bound:
+              type: integer
+              description: The number of possible errors that occurred when searching the shards
+            sum_other_doc_count:
+              type: integer
+              description: The number of complaints that were not included in this aggregation.
+    TrendsResult:
+      type: object
+      properties:
+        aggregations:
+          type: object
+          properties:
+            company:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            issue:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            product:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            sub_issue:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            sub_product:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            tags:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+    MultiLevelBucket:
+      type: object
+      properties:
+        doc_count:
+          type: integer
+          description: The number of complaints that match this key
+        key:
+          type: string
+externalDocs:
+  description: Additional API Information
+  url: https://cfpb.github.io/api/ccdb/

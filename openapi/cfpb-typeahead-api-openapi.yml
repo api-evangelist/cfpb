@@ -1,0 +1,247 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Consumer Complaint Database Aggregations Typeahead API
+  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
+  termsOfService: https://cfpb.github.io/source-code-policy/
+  contact:
+    name: Report API Issues
+    url: https://github.com/cfpb/ccdb5-api/issues
+  license:
+    name: Creative Commons License CC0
+    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+servers:
+- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+  description: Production server
+security: []
+tags:
+- name: Typeahead
+  description: These endpoints support the typeahead boxes in the UI
+paths:
+  /_suggest:
+    get:
+      tags:
+      - Typeahead
+      summary: Suggest possible searches
+      description: The endpoint for the main search box in the UI
+      parameters:
+      - $ref: '#/components/parameters/size'
+      - $ref: '#/components/parameters/suggest_text'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestResult'
+        '400':
+          description: Invalid input
+  /_suggest_company:
+    get:
+      tags:
+      - Typeahead
+      summary: Suggest possible companies
+      description: Provide a list of companies that match the input text
+      parameters:
+      - $ref: '#/components/parameters/suggest_text'
+      - $ref: '#/components/parameters/size'
+      - $ref: '#/components/parameters/company_public_response'
+      - $ref: '#/components/parameters/company_received_max'
+      - $ref: '#/components/parameters/company_received_min'
+      - $ref: '#/components/parameters/company_response'
+      - $ref: '#/components/parameters/date_received_max'
+      - $ref: '#/components/parameters/date_received_min'
+      - $ref: '#/components/parameters/has_narrative'
+      - $ref: '#/components/parameters/issue'
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/state'
+      - $ref: '#/components/parameters/submitted_via'
+      - $ref: '#/components/parameters/tags'
+      - $ref: '#/components/parameters/timely'
+      - $ref: '#/components/parameters/zip_code'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestResult'
+        '400':
+          description: Invalid input
+  /_suggest_zip:
+    get:
+      tags:
+      - Typeahead
+      summary: Suggest possible zip codes
+      description: Provide a list of zip codes that match the input text
+      parameters:
+      - $ref: '#/components/parameters/suggest_text'
+      - $ref: '#/components/parameters/size'
+      - $ref: '#/components/parameters/company_public_response'
+      - $ref: '#/components/parameters/company_received_max'
+      - $ref: '#/components/parameters/company_received_min'
+      - $ref: '#/components/parameters/company_response'
+      - $ref: '#/components/parameters/date_received_max'
+      - $ref: '#/components/parameters/date_received_min'
+      - $ref: '#/components/parameters/has_narrative'
+      - $ref: '#/components/parameters/issue'
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/state'
+      - $ref: '#/components/parameters/submitted_via'
+      - $ref: '#/components/parameters/tags'
+      - $ref: '#/components/parameters/timely'
+      - $ref: '#/components/parameters/zip_code'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestResult'
+        '400':
+          description: Invalid input
+components:
+  parameters:
+    company_received_max:
+      name: company_received_max
+      in: query
+      description: Return results with date < company_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    state:
+      name: state
+      in: query
+      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    zip_code:
+      name: zip_code
+      in: query
+      description: Filter the results to only return these zip codes
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    timely:
+      name: timely
+      in: query
+      description: Filter the results to show whether a response was timely
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    date_received_min:
+      name: date_received_min
+      in: query
+      description: Return results with date >= date_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    suggest_text:
+      name: text
+      in: query
+      description: text to use for suggestions
+      required: true
+      schema:
+        type: string
+    has_narrative:
+      name: has_narrative
+      in: query
+      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    size:
+      name: size
+      in: query
+      description: Limit the size of the results
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 100
+        default: 10
+    product:
+      name: product
+      in: query
+      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    tags:
+      name: tags
+      in: query
+      description: Filter the results to only return these types of tag
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    issue:
+      name: issue
+      in: query
+      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_received_min:
+      name: company_received_min
+      in: query
+      description: Return results with date >= company_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    company_response:
+      name: company_response
+      in: query
+      description: Filter the results to only return these types of response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_public_response:
+      name: company_public_response
+      in: query
+      description: Filter the results to only return these types of public response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    submitted_via:
+      name: submitted_via
+      in: query
+      description: Filter the results to only return these types of way consumers submitted their complaints
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    date_received_max:
+      name: date_received_max
+      in: query
+      description: Return results with date < date_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+  schemas:
+    SuggestResult:
+      type: array
+      items:
+        type: string
+externalDocs:
+  description: Additional API Information
+  url: https://cfpb.github.io/api/ccdb/
