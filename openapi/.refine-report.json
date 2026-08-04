@@ -1,0 +1,34 @@
+{
+  "provider": "cfpb",
+  "sources": [
+    "cfpb-aggregations-api-openapi.yml",
+    "cfpb-complaints-api-openapi.yml",
+    "cfpb-csv-api-openapi.yml",
+    "cfpb-edits-api-openapi.yml",
+    "cfpb-filers-api-openapi.yml",
+    "cfpb-filings-api-openapi.yml",
+    "cfpb-health-api-openapi.yml",
+    "cfpb-institutions-api-openapi.yml",
+    "cfpb-submissions-api-openapi.yml",
+    "cfpb-trends-api-openapi.yml",
+    "cfpb-typeahead-api-openapi.yml"
+  ],
+  "outputs": [
+    "cfpb-aggregations-api-openapi.yml",
+    "cfpb-complaints-api-openapi.yml",
+    "cfpb-csv-api-openapi.yml",
+    "cfpb-edits-api-openapi.yml",
+    "cfpb-filers-api-openapi.yml",
+    "cfpb-filings-api-openapi.yml",
+    "cfpb-health-api-openapi.yml",
+    "cfpb-institutions-api-openapi.yml",
+    "cfpb-submissions-api-openapi.yml",
+    "cfpb-trends-api-openapi.yml",
+    "cfpb-typeahead-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
