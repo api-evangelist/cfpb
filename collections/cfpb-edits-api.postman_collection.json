@@ -1,0 +1,858 @@
+{
+  "item": [
+    {
+      "id": "f7af8edd-65cc-452b-9e93-ab88abd22598",
+      "name": "Edits",
+      "description": {
+        "content": "Submission edit and validation reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "926e2d9d-1411-482d-a11b-a402d8f6ec98",
+          "name": "Get parse errors for submission",
+          "request": {
+            "name": "Get parse errors for submission",
+            "description": {
+              "content": "Returns parse errors for the transmittal sheet and LAR records in a submission",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId",
+                "parseErrors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (page size is 20)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5626404-09ab-4634-a16b-75ec71870df8",
+              "name": "Parse errors with pagination metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "parseErrors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transmittalSheetErrors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"larErrors\": [\n    {\n      \"lineNumber\": 510,\n      \"errors\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"lineNumber\": 3256,\n      \"errors\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"count\": 4807,\n  \"total\": 3048,\n  \"_links\": {\n    \"href\": \"string\",\n    \"self\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5326cbcd-ec5a-4298-848d-3a3f7ded2321",
+              "name": "Submission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "parseErrors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b525f24c-57bc-4f86-a645-cc9f25a3aafc",
+          "name": "Get all edits for submission",
+          "request": {
+            "name": "Get all edits for submission",
+            "description": {
+              "content": "Returns edits grouped by type (syntactical, validity, quality, macro) for a submission",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId",
+                "edits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f2c9a15-7f52-4a18-af47-e195fdfc2cf5",
+              "name": "Edits grouped by type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "edits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"syntactical\": {\n    \"edits\": [\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": 6251.935919982696,\n            \"key_1\": 1376\n          },\n          {\n            \"key_0\": \"string\"\n          }\n        ]\n      },\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": 3295.660759110135,\n            \"key_1\": true,\n            \"key_2\": 7734.720839739301,\n            \"key_3\": 8313.350966076088\n          },\n          {\n            \"key_0\": \"string\",\n            \"key_1\": 4046\n          }\n        ]\n      }\n    ],\n    \"verified\": true\n  },\n  \"validity\": {\n    \"edits\": [\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": 2068.4497578284577,\n            \"key_1\": 9881\n          },\n          {\n            \"key_0\": \"string\"\n          }\n        ]\n      },\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": false,\n            \"key_1\": false\n          },\n          {\n            \"key_0\": true,\n            \"key_1\": true,\n            \"key_2\": false,\n            \"key_3\": 5631.264702739429\n          }\n        ]\n      }\n    ],\n    \"verified\": true\n  },\n  \"quality\": {\n    \"edits\": [\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": 4742.377146808702\n          },\n          {\n            \"key_0\": 543,\n            \"key_1\": 5302.024487312818\n          }\n        ]\n      },\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": false,\n            \"key_1\": 4872\n          },\n          {\n            \"key_0\": 9193,\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": 1018\n          }\n        ]\n      }\n    ],\n    \"verified\": true\n  },\n  \"macro\": {\n    \"edits\": [\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": 3397.67008028943,\n            \"key_1\": 3479\n          },\n          {\n            \"key_0\": 7805.362389922284\n          }\n        ]\n      },\n      {\n        \"edit\": \"string\",\n        \"description\": \"string\",\n        \"rows\": [\n          {\n            \"key_0\": 6423,\n            \"key_1\": 5054.858038354738\n          },\n          {\n            \"key_0\": 2374,\n            \"key_1\": true\n          }\n        ]\n      }\n    ],\n    \"verified\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f338ec18-1960-4073-ade6-87f2abfc3d8a",
+              "name": "Submission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "edits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d9f3b50-be16-4d9e-bd3f-2b42d5a9b591",
+          "name": "Verify quality or macro edits",
+          "request": {
+            "name": "Verify quality or macro edits",
+            "description": {
+              "content": "Marks quality or macro edits as verified for a submission",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId",
+                "edits",
+                ":editType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editType",
+                  "description": "(Required) The type of edit to verify (quality or macro)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"verified\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2135ae2-d656-43c8-a2ef-36ca4893d82f",
+              "name": "Edit verification status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "edits",
+                    ":editType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editType",
+                      "description": "(Required) The type of edit to verify (quality or macro)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verified\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verified\": false,\n  \"status\": {\n    \"code\": 4636,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0873c0cd-98fa-4fbd-8b9f-8cb16f80f71e",
+              "name": "Submission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "edits",
+                    ":editType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editType",
+                      "description": "(Required) The type of edit to verify (quality or macro)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verified\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "295723dc-6650-4b77-9be8-19b87fc871ac",
+          "name": "Get edit details",
+          "request": {
+            "name": "Get edit details",
+            "description": {
+              "content": "Returns details for a specific edit including affected rows, field names and values, and pagination links",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId",
+                "edits",
+                ":editName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "editName",
+                  "description": "(Required) The name of the specific edit"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "854f9bd8-035c-4fb1-8191-33c4b946f06e",
+              "name": "Edit details with affected rows",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "edits",
+                    ":editName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editName",
+                      "description": "(Required) The name of the specific edit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"edit\": \"string\",\n  \"rows\": [\n    {\n      \"key_0\": 8457,\n      \"key_1\": false\n    },\n    {\n      \"key_0\": \"string\",\n      \"key_1\": 9067,\n      \"key_2\": \"string\"\n    }\n  ],\n  \"_links\": {\n    \"href\": \"string\",\n    \"self\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0931ae5d-e9fe-4916-be1b-f6dbb4881764",
+              "name": "Edit not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "edits",
+                    ":editName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "editName",
+                      "description": "(Required) The name of the specific edit"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "499d928d-83b6-425f-9af3-752ebff29e73",
+    "name": "Consumer Complaint Database Aggregations Edits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Consumer Complaint Database Aggregations Submissions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Submissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create new submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              }
+            ]
+          },
+          "docs": "Creates a new submission for the filing identified by LEI and period"
+        },
+        {
+          "info": {
+            "name": "Get latest submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/latest",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              }
+            ]
+          },
+          "docs": "Returns the most recent submission for the given institution and filing period"
+        },
+        {
+          "info": {
+            "name": "Upload HMDA data file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a HMDA LAR (Loan Application Register) file for the given submission"
+        },
+        {
+          "info": {
+            "name": "Get submission signature receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId/sign",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              }
+            ]
+          },
+          "docs": "Returns the signature receipt for a submission"
+        },
+        {
+          "info": {
+            "name": "Sign submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId/sign",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Signs and finalizes a submission after all edits have been verified"
+        },
+        {
+          "info": {
+            "name": "Get submission summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId/summary",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              }
+            ]
+          },
+          "docs": "Returns submission details plus transmittal sheet information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

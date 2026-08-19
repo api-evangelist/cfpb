@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Consumer Complaint Database Aggregations Edits API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Edits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get parse errors for submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId/parseErrors",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (page size is 20)"
+              }
+            ]
+          },
+          "docs": "Returns parse errors for the transmittal sheet and LAR records in a submission"
+        },
+        {
+          "info": {
+            "name": "Get all edits for submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId/edits",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              }
+            ]
+          },
+          "docs": "Returns edits grouped by type (syntactical, validity, quality, macro) for a submission"
+        },
+        {
+          "info": {
+            "name": "Verify quality or macro edits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId/edits/:editType",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              },
+              {
+                "name": "editType",
+                "value": "",
+                "type": "path",
+                "description": "The type of edit to verify (quality or macro)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks quality or macro edits as verified for a submission"
+        },
+        {
+          "info": {
+            "name": "Get edit details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period/submissions/:submissionId/edits/:editName",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "Submission identifier"
+              },
+              {
+                "name": "editName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the specific edit"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific edit including affected rows, field names and values, and pagination links"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

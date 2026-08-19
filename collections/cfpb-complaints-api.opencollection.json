@@ -1,0 +1,309 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Consumer Complaint Database Aggregations Complaints API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Complaints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search consumer complaints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+            "params": [
+              {
+                "name": "search_term",
+                "value": "",
+                "type": "query",
+                "description": "Return results containing specific term"
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "query",
+                "description": "If the parameter \"search_term\" has a value, use \"field\" to specify which field is searched. If not specified, \"complaint_what_happened\" will be searched."
+              },
+              {
+                "name": "frm",
+                "value": "",
+                "type": "query",
+                "description": "Return results starting from a specific index, only if format parameter is not specified, ignore otherwise"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Limit the size of the results"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Return results sort in a particular order"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format to be returned, if this parameter is not specified, frm/size parameters can be used properly, but if a format is specified for exporting, frm/size will be ignored"
+              },
+              {
+                "name": "no_aggs",
+                "value": "",
+                "type": "query",
+                "description": "Include aggregations in result or not, True means no aggregations will be included, False means aggregations will be included."
+              },
+              {
+                "name": "no_highlight",
+                "value": "",
+                "type": "query",
+                "description": "Include highlight of search term in result or not, True means no highlighting will be included, False means highlighting will be included."
+              },
+              {
+                "name": "company",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these companies"
+              },
+              {
+                "name": "company_public_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of public response by the company"
+              },
+              {
+                "name": "company_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < company_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= company_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of response by the company"
+              },
+              {
+                "name": "date_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < date_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "date_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= date_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "has_narrative",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+              },
+              {
+                "name": "issue",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+              },
+              {
+                "name": "search_after",
+                "value": "",
+                "type": "query",
+                "description": "Used in conjunction with frm parameter to paginate results."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+              },
+              {
+                "name": "submitted_via",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of way consumers submitted their complaints"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of tag"
+              },
+              {
+                "name": "timely",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to show whether a response was timely"
+              },
+              {
+                "name": "zip_code",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these zip codes"
+              }
+            ]
+          },
+          "docs": "Search the contents of the consumer complaint database"
+        },
+        {
+          "info": {
+            "name": "Find consumer complaint by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/:complaintId",
+            "params": [
+              {
+                "name": "complaintId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the complaint"
+              }
+            ]
+          },
+          "docs": "Get complaint details for a specific ID"
+        },
+        {
+          "info": {
+            "name": "Get the state-by-state information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/geo/states",
+            "params": [
+              {
+                "name": "search_term",
+                "value": "",
+                "type": "query",
+                "description": "Return results containing specific term"
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "query",
+                "description": "If the parameter \"search_term\" has a value, use \"field\" to specify which field is searched. If not specified, \"complaint_what_happened\" will be searched."
+              },
+              {
+                "name": "company",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these companies"
+              },
+              {
+                "name": "company_public_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of public response by the company"
+              },
+              {
+                "name": "company_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < company_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= company_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of response by the company"
+              },
+              {
+                "name": "date_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < date_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "date_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= date_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "has_narrative",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+              },
+              {
+                "name": "issue",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+              },
+              {
+                "name": "submitted_via",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of way consumers submitted their complaints"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of tag"
+              },
+              {
+                "name": "timely",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to show whether a response was timely"
+              },
+              {
+                "name": "zip_code",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these zip codes"
+              }
+            ]
+          },
+          "docs": "Get complaint information broken down by states"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

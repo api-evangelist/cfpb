@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "a8f053b8-67ad-4621-9c87-86c3f1ad7e2f",
+      "name": "Health",
+      "description": {
+        "content": "Service health check",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "032f579c-b3d6-4c4d-ae10-b9b0c8bf7074",
+          "name": "Service health check",
+          "request": {
+            "name": "Service health check",
+            "description": {
+              "content": "Returns the health status of the HMDA Platform Filing API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "302a0ece-d9b9-47ca-abbd-975f0c18d06d",
+              "name": "Service is running",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"service\": \"string\",\n  \"timestamp\": \"1962-06-05T16:17:28.561Z\",\n  \"host\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "90b86c74-160b-4698-bcb1-65cbaaf1681d",
+    "name": "Consumer Complaint Database Aggregations Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}

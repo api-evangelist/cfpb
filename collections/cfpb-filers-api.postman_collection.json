@@ -1,0 +1,207 @@
+{
+  "item": [
+    {
+      "id": "3658de85-f987-4c8b-ad43-498e50bde9bf",
+      "name": "Filers",
+      "description": {
+        "content": "HMDA filing institution information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6676e500-040d-4f36-8576-13434422a692",
+          "name": "List HMDA filers",
+          "request": {
+            "name": "List HMDA filers",
+            "description": {
+              "content": "Returns a list of financial institutions that filed HMDA data for the specified year(s) and geography or LEI filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "view",
+                "filers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "years",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of years (e.g. 2018,2019,2020)"
+                },
+                {
+                  "disabled": false,
+                  "key": "states",
+                  "value": "<string>",
+                  "description": "Comma-separated list of two-letter state abbreviations (e.g. CA,TX)"
+                },
+                {
+                  "disabled": false,
+                  "key": "counties",
+                  "value": "<string>",
+                  "description": "Comma-separated list of 5-digit FIPS county codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "msamds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of 5-digit MSA/MD codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "leis",
+                  "value": "<string>",
+                  "description": "Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe643872-d80e-416b-9670-316899f133c9",
+              "name": "List of HMDA filers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "view",
+                    "filers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "years",
+                      "value": "2020"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counties",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "msamds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "leis",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"institutions\": [\n    {\n      \"lei\": \"string\",\n      \"name\": \"string\",\n      \"period\": \"string\"\n    },\n    {\n      \"lei\": \"string\",\n      \"name\": \"string\",\n      \"period\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d3cd8bb-299a-46ca-82b9-da8935d6ed82",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "view",
+                    "filers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "years",
+                      "value": "2020"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counties",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "msamds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "leis",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d8a87d37-1e49-4808-bef0-6ce67e03eadc",
+    "name": "Consumer Complaint Database Aggregations Filers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}

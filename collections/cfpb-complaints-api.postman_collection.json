@@ -1,0 +1,1138 @@
+{
+  "item": [
+    {
+      "id": "9e0673d6-6b7d-40f6-9c35-f418eacc8215",
+      "name": "Complaints",
+      "description": {
+        "content": "These endpoints provide access to consumer complaints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffe1248a-f9db-4d7e-912f-95a50252a8f2",
+          "name": "Search consumer complaints",
+          "request": {
+            "name": "Search consumer complaints",
+            "description": {
+              "content": "Search the contents of the consumer complaint database",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_term",
+                  "value": "<string>",
+                  "description": "Return results containing specific term"
+                },
+                {
+                  "disabled": false,
+                  "key": "field",
+                  "value": "complaint_what_happened",
+                  "description": "If the parameter \"search_term\" has a value, use \"field\" to specify which field is searched. If not specified, \"complaint_what_happened\" will be searched."
+                },
+                {
+                  "disabled": false,
+                  "key": "frm",
+                  "value": "0",
+                  "description": "Return results starting from a specific index, only if format parameter is not specified, ignore otherwise"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Limit the size of the results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "relevance_desc",
+                  "description": "Return results sort in a particular order"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Format to be returned, if this parameter is not specified, frm/size parameters can be used properly, but if a format is specified for exporting, frm/size will be ignored"
+                },
+                {
+                  "disabled": false,
+                  "key": "no_aggs",
+                  "value": "false",
+                  "description": "Include aggregations in result or not, True means no aggregations will be included, False means aggregations will be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "no_highlight",
+                  "value": "false",
+                  "description": "Include highlight of search term in result or not, True means no highlighting will be included, False means highlighting will be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these companies"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these companies"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_public_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of public response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_public_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of public response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_received_max",
+                  "value": "<date>",
+                  "description": "Return results with date < company_received_max (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_received_min",
+                  "value": "<date>",
+                  "description": "Return results with date >= company_received_min (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_received_max",
+                  "value": "<date>",
+                  "description": "Return results with date < date_received_max (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_received_min",
+                  "value": "<date>",
+                  "description": "Return results with date >= date_received_min (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_narrative",
+                  "value": "<string>",
+                  "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_narrative",
+                  "value": "<string>",
+                  "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+                },
+                {
+                  "disabled": false,
+                  "key": "issue",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+                },
+                {
+                  "disabled": false,
+                  "key": "issue",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+                },
+                {
+                  "disabled": false,
+                  "key": "search_after",
+                  "value": "<string>",
+                  "description": "Used in conjunction with frm parameter to paginate results."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+                },
+                {
+                  "disabled": false,
+                  "key": "submitted_via",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of way consumers submitted their complaints"
+                },
+                {
+                  "disabled": false,
+                  "key": "submitted_via",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of way consumers submitted their complaints"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of tag"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of tag"
+                },
+                {
+                  "disabled": false,
+                  "key": "timely",
+                  "value": "<string>",
+                  "description": "Filter the results to show whether a response was timely"
+                },
+                {
+                  "disabled": false,
+                  "key": "timely",
+                  "value": "<string>",
+                  "description": "Filter the results to show whether a response was timely"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip_code",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these zip codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip_code",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these zip codes"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6daeadaf-990b-4117-988a-bee5353fde18",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_term",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "field",
+                      "value": "complaint_what_happened"
+                    },
+                    {
+                      "key": "frm",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "relevance_desc"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "no_aggs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "no_highlight",
+                      "value": "false"
+                    },
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_public_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_public_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_received_max",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "company_received_min",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "company_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_received_max",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date_received_min",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "has_narrative",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_narrative",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_via",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_via",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timely",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timely",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip_code",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_meta\": {\n    \"break_points\": {},\n    \"has_data_issue\": false,\n    \"is_data_stale\": true,\n    \"is_narrative_stale\": false,\n    \"last_indexed\": \"1984-03-14T07:41:51.906Z\",\n    \"last_updated\": \"2017-01-23T05:32:27.176Z\",\n    \"license\": \"string\",\n    \"total_record_count\": 1256\n  },\n  \"aggregations\": {\n    \"company_public_response\": {\n      \"doc_count\": 2582,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 7274,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 2779,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 5093,\n        \"sum_other_doc_count\": 2818\n      }\n    },\n    \"company_response\": {\n      \"doc_count\": 6327,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 6187,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 925,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 8096,\n        \"sum_other_doc_count\": 4031\n      }\n    },\n    \"has_narrative\": {\n      \"doc_count\": 137,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 5702,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 4981,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 7700,\n        \"sum_other_doc_count\": 2181\n      }\n    },\n    \"issue\": {\n      \"doc_count\": 7792,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 4271,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 1811,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 6474,\n        \"sum_other_doc_count\": 3854\n      }\n    },\n    \"product\": {\n      \"doc_count\": 3076,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 3859,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 9546,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 1735,\n        \"sum_other_doc_count\": 6797\n      }\n    },\n    \"state\": {\n      \"doc_count\": 1081,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 2375,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 3585,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 749,\n        \"sum_other_doc_count\": 7339\n      }\n    },\n    \"submitted_via\": {\n      \"doc_count\": 7190,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 3523,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 2543,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 2139,\n        \"sum_other_doc_count\": 6076\n      }\n    },\n    \"tags\": {\n      \"doc_count\": 5131,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 3652,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 987,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 2425,\n        \"sum_other_doc_count\": 5949\n      }\n    },\n    \"timely\": {\n      \"doc_count\": 4671,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 322,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 7623,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 1922,\n        \"sum_other_doc_count\": 5183\n      }\n    },\n    \"zip_code\": {\n      \"doc_count\": 413,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 6749,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 7278,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 8710,\n        \"sum_other_doc_count\": 4205\n      }\n    }\n  },\n  \"hits\": {\n    \"hits\": [\n      {\n        \"_source\": {\n          \"company\": \"string\",\n          \"company_public_response\": \"string\",\n          \"company_response\": \"string\",\n          \"complaint_id\": 1367,\n          \"complaint_what_happened\": \"string\",\n          \"date_received\": \"2002-12-18\",\n          \"date_sent_to_company\": \"string\",\n          \"has_narrative\": false,\n          \"issue\": \"string\",\n          \"product\": \"string\",\n          \"state\": \"string\",\n          \"sub_issue\": \"string\",\n          \"sub_product\": \"string\",\n          \"submitted_via\": \"string\",\n          \"tags\": \"string\",\n          \"timely\": \"string\",\n          \"zip_code\": \"string\"\n        }\n      },\n      {\n        \"_source\": {\n          \"company\": \"string\",\n          \"company_public_response\": \"string\",\n          \"company_response\": \"string\",\n          \"complaint_id\": 923,\n          \"complaint_what_happened\": \"string\",\n          \"date_received\": \"1954-07-22\",\n          \"date_sent_to_company\": \"string\",\n          \"has_narrative\": true,\n          \"issue\": \"string\",\n          \"product\": \"string\",\n          \"state\": \"string\",\n          \"sub_issue\": \"string\",\n          \"sub_product\": \"string\",\n          \"submitted_via\": \"string\",\n          \"tags\": \"string\",\n          \"timely\": \"string\",\n          \"zip_code\": \"string\"\n        }\n      }\n    ],\n    \"max_score\": 7473.7031331174685,\n    \"total\": {\n      \"value\": 3239,\n      \"relation\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9042131c-91a4-4944-b34c-171db7293456",
+              "name": "Invalid status value",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_term",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "field",
+                      "value": "complaint_what_happened"
+                    },
+                    {
+                      "key": "frm",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "relevance_desc"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "no_aggs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "no_highlight",
+                      "value": "false"
+                    },
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_public_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_public_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_received_max",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "company_received_min",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "company_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_received_max",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date_received_min",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "has_narrative",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_narrative",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_via",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_via",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timely",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timely",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip_code",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c26bb2ae-1b38-483c-9dc9-f43774f6f150",
+          "name": "Find consumer complaint by ID",
+          "request": {
+            "name": "Find consumer complaint by ID",
+            "description": {
+              "content": "Get complaint details for a specific ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":complaintId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "complaintId",
+                  "description": "(Required) ID of the complaint"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16948653-4566-45af-9e17-9e3f33d6781b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":complaintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "complaintId",
+                      "description": "(Required) ID of the complaint"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"company\": \"string\",\n  \"company_public_response\": \"string\",\n  \"company_response\": \"string\",\n  \"complaint_id\": 7363,\n  \"complaint_what_happened\": \"string\",\n  \"date_received\": \"1973-12-11\",\n  \"date_sent_to_company\": \"string\",\n  \"has_narrative\": true,\n  \"issue\": \"string\",\n  \"product\": \"string\",\n  \"state\": \"string\",\n  \"sub_issue\": \"string\",\n  \"sub_product\": \"string\",\n  \"submitted_via\": \"string\",\n  \"tags\": \"string\",\n  \"timely\": \"string\",\n  \"zip_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5faa7b20-6241-415b-8715-e2ba2b77c4ad",
+              "name": "Invalid ID supplied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":complaintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "complaintId",
+                      "description": "(Required) ID of the complaint"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c80e9fd0-bb33-4766-a4ff-c105954b650d",
+              "name": "Complaint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":complaintId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "complaintId",
+                      "description": "(Required) ID of the complaint"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86b3a95c-fe88-451f-93a8-9a38348d8e5d",
+          "name": "Get the state-by-state information",
+          "request": {
+            "name": "Get the state-by-state information",
+            "description": {
+              "content": "Get complaint information broken down by states",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geo",
+                "states"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_term",
+                  "value": "<string>",
+                  "description": "Return results containing specific term"
+                },
+                {
+                  "disabled": false,
+                  "key": "field",
+                  "value": "complaint_what_happened",
+                  "description": "If the parameter \"search_term\" has a value, use \"field\" to specify which field is searched. If not specified, \"complaint_what_happened\" will be searched."
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these companies"
+                },
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these companies"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_public_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of public response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_public_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of public response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_received_max",
+                  "value": "<date>",
+                  "description": "Return results with date < company_received_max (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_received_min",
+                  "value": "<date>",
+                  "description": "Return results with date >= company_received_min (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "company_response",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of response by the company"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_received_max",
+                  "value": "<date>",
+                  "description": "Return results with date < date_received_max (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_received_min",
+                  "value": "<date>",
+                  "description": "Return results with date >= date_received_min (i.e. 2017-03-04)"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_narrative",
+                  "value": "<string>",
+                  "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_narrative",
+                  "value": "<string>",
+                  "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+                },
+                {
+                  "disabled": false,
+                  "key": "issue",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+                },
+                {
+                  "disabled": false,
+                  "key": "issue",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+                },
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+                },
+                {
+                  "disabled": false,
+                  "key": "submitted_via",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of way consumers submitted their complaints"
+                },
+                {
+                  "disabled": false,
+                  "key": "submitted_via",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of way consumers submitted their complaints"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of tag"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these types of tag"
+                },
+                {
+                  "disabled": false,
+                  "key": "timely",
+                  "value": "<string>",
+                  "description": "Filter the results to show whether a response was timely"
+                },
+                {
+                  "disabled": false,
+                  "key": "timely",
+                  "value": "<string>",
+                  "description": "Filter the results to show whether a response was timely"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip_code",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these zip codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip_code",
+                  "value": "<string>",
+                  "description": "Filter the results to only return these zip codes"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94178eae-2252-4df8-87a2-0fd0697bda17",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geo",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_term",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "field",
+                      "value": "complaint_what_happened"
+                    },
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_public_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_public_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_received_max",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "company_received_min",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "company_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "company_response",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_received_max",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "date_received_min",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "has_narrative",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_narrative",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issue",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_via",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "submitted_via",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timely",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "timely",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zip_code",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregations\": {\n    \"issue\": {\n      \"doc_count\": 7376,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 3897,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 4814,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 1588,\n        \"sum_other_doc_count\": 1663\n      }\n    },\n    \"product\": {\n      \"doc_count\": 606,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 5620,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 1284,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 6607,\n        \"sum_other_doc_count\": 5749\n      }\n    },\n    \"state\": {\n      \"doc_count\": 2801,\n      \"field\": {\n        \"buckets\": [\n          {\n            \"doc_count\": 2839,\n            \"key\": \"string\"\n          },\n          {\n            \"doc_count\": 7099,\n            \"key\": \"string\"\n          }\n        ],\n        \"doc_count_error_upper_bound\": 8218,\n        \"sum_other_doc_count\": 8822\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "65a921b8-7988-4070-ba0d-3dbb4c73db8b",
+    "name": "Consumer Complaint Database Aggregations Complaints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}

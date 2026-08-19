@@ -1,0 +1,1279 @@
+{
+  "item": [
+    {
+      "id": "b50c1f7b-3fde-4489-958a-9932968f54fd",
+      "name": "Submissions",
+      "description": {
+        "content": "HMDA data submission management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "adedd482-3bd7-4763-bd98-0c1ff82ef63f",
+          "name": "Create new submission",
+          "request": {
+            "name": "Create new submission",
+            "description": {
+              "content": "Creates a new submission for the filing identified by LEI and period",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef61cec9-2e5f-48f5-a9b5-5652cec309fd",
+              "name": "Submission created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": {\n    \"code\": 7662,\n    \"message\": \"string\"\n  },\n  \"start\": 818,\n  \"end\": 5916\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd982c12-9c99-4a13-a957-230d57cf5840",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8933f21e-3fe7-4a5d-8de5-c3355ca0b3d0",
+          "name": "Get latest submission",
+          "request": {
+            "name": "Get latest submission",
+            "description": {
+              "content": "Returns the most recent submission for the given institution and filing period",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9369b5de-3664-4e8e-aa5a-c09ee8d9c8a7",
+              "name": "Latest submission details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": {\n    \"code\": 7662,\n    \"message\": \"string\"\n  },\n  \"start\": 818,\n  \"end\": 5916\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e7ece13-3f34-422b-ba97-98ea338318d4",
+              "name": "No submissions found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ea54ce9-f4b8-4eaf-beb1-691c3cde63ea",
+          "name": "Upload HMDA data file",
+          "request": {
+            "name": "Upload HMDA data file",
+            "description": {
+              "content": "Uploads a HMDA LAR (Loan Application Register) file for the given submission",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "HMDA LAR file (pipe-delimited format)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e303ab1d-5e99-4613-a3fa-3d361653215b",
+              "name": "File uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "HMDA LAR file (pipe-delimited format)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": {\n    \"code\": 7662,\n    \"message\": \"string\"\n  },\n  \"start\": 818,\n  \"end\": 5916\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14c410b2-9115-494d-892b-9c24a1a9873b",
+              "name": "Invalid file format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "HMDA LAR file (pipe-delimited format)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64d792ac-3400-4898-81d1-07e48efe2958",
+              "name": "Submission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "HMDA LAR file (pipe-delimited format)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "843f4f43-a55a-46dd-aced-a2a8c984cce9",
+          "name": "Get submission signature receipt",
+          "request": {
+            "name": "Get submission signature receipt",
+            "description": {
+              "content": "Returns the signature receipt for a submission",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId",
+                "sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b48e950-c9c7-423d-96e1-cd40b0c31bbd",
+              "name": "Submission receipt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": 8987,\n  \"receipt\": \"string\",\n  \"status\": {\n    \"code\": 5532,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7eb80241-c119-49ec-9b46-58bf75b13b38",
+              "name": "Submission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0aefc7c-bafd-4d31-8854-bb39c4ded7b5",
+          "name": "Sign submission",
+          "request": {
+            "name": "Sign submission",
+            "description": {
+              "content": "Signs and finalizes a submission after all edits have been verified",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId",
+                "sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signed\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9580e2e6-7b1f-4314-a5f7-442268a87f83",
+              "name": "Submission signed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": 8987,\n  \"receipt\": \"string\",\n  \"status\": {\n    \"code\": 5532,\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "217631b5-8fd4-4df1-9280-92673c1376d6",
+              "name": "Submission cannot be signed (edits not verified)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd63667a-2f83-4e36-9821-c1cfeb00663f",
+              "name": "Submission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5901b666-df0e-42a3-b8bd-73ccc2db847c",
+          "name": "Get submission summary",
+          "request": {
+            "name": "Get submission summary",
+            "description": {
+              "content": "Returns submission details plus transmittal sheet information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period",
+                "submissions",
+                ":submissionId",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) Submission identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7748f103-bb54-4bc4-9064-bb90e727da87",
+              "name": "Submission summary with transmittal sheet",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submission\": {\n    \"id\": \"string\",\n    \"status\": {\n      \"code\": 919,\n      \"message\": \"string\"\n    },\n    \"start\": 8414,\n    \"end\": 6630\n  },\n  \"transmittalSheet\": {\n    \"institutionName\": \"string\",\n    \"year\": 5715,\n    \"quarter\": 7774,\n    \"lei\": \"string\",\n    \"taxId\": \"string\",\n    \"totalLines\": 9027,\n    \"contact\": {\n      \"name\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"address\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "516ca174-96c5-45a8-9faf-051c6997437b",
+              "name": "Submission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period",
+                    "submissions",
+                    ":submissionId",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) Submission identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "47e60e3c-adee-4f91-bd2c-ea7f8d623834",
+    "name": "Consumer Complaint Database Aggregations Submissions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}

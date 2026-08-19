@@ -1,0 +1,609 @@
+{
+  "item": [
+    {
+      "id": "022cffaf-b077-4085-82c6-1e54376293b8",
+      "name": "CSV",
+      "description": {
+        "content": "HMDA data as CSV downloads",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5bf0b73d-bac0-431e-9309-03dac2fceb4f",
+          "name": "Nationwide data subset as CSV",
+          "request": {
+            "name": "Nationwide data subset as CSV",
+            "description": {
+              "content": "Returns a CSV download of HMDA data for the entire nation filtered by the specified variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "view",
+                "nationwide",
+                "csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "years",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of years (e.g. 2018,2019,2020)"
+                },
+                {
+                  "disabled": false,
+                  "key": "actions_taken",
+                  "value": "<string>",
+                  "description": "Comma-separated list of action taken codes (1-8)"
+                },
+                {
+                  "disabled": false,
+                  "key": "construction_methods",
+                  "value": "<string>",
+                  "description": "Comma-separated list of construction method codes (1=Site Built, 2=Manufactured)"
+                },
+                {
+                  "disabled": false,
+                  "key": "derived_dwelling_categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of derived dwelling category codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "derived_loan_product_types",
+                  "value": "<string>",
+                  "description": "Comma-separated list of derived loan product type codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "ethnicities",
+                  "value": "<string>",
+                  "description": "Comma-separated list of ethnicity codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "lien_statuses",
+                  "value": "<string>",
+                  "description": "Comma-separated list of lien status codes (1=First lien, 2=Subordinate lien)"
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_purposes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)"
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_types",
+                  "value": "<string>",
+                  "description": "Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "races",
+                  "value": "<string>",
+                  "description": "Comma-separated list of race codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "sexes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of sex codes (1=Male, 2=Female, 3=Information not provided, 4=Not applicable)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45ad8e82-4fb0-4abc-9d57-71c0d5f7e47a",
+              "name": "CSV data response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "view",
+                    "nationwide",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "years",
+                      "value": "2020"
+                    },
+                    {
+                      "key": "actions_taken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "construction_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_dwelling_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_loan_product_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ethnicities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lien_statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_purposes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "races",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sexes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c44703c-2176-49dc-bb6a-472125d0ffd1",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "view",
+                    "nationwide",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "years",
+                      "value": "2020"
+                    },
+                    {
+                      "key": "actions_taken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "construction_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_dwelling_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_loan_product_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ethnicities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lien_statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_purposes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "races",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sexes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "407e4af3-9b65-401f-81e2-1cd577eba588",
+          "name": "Data subset as CSV by geography or LEI",
+          "request": {
+            "name": "Data subset as CSV by geography or LEI",
+            "description": {
+              "content": "Returns a CSV download of HMDA data filtered by state, county, MSA/MD, or LEI and the specified variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "view",
+                "csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "years",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of years (e.g. 2018,2019,2020)"
+                },
+                {
+                  "disabled": false,
+                  "key": "states",
+                  "value": "<string>",
+                  "description": "Comma-separated list of two-letter state abbreviations (e.g. CA,TX)"
+                },
+                {
+                  "disabled": false,
+                  "key": "counties",
+                  "value": "<string>",
+                  "description": "Comma-separated list of 5-digit FIPS county codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "msamds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of 5-digit MSA/MD codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "leis",
+                  "value": "<string>",
+                  "description": "Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions"
+                },
+                {
+                  "disabled": false,
+                  "key": "actions_taken",
+                  "value": "<string>",
+                  "description": "Comma-separated list of action taken codes (1-8)"
+                },
+                {
+                  "disabled": false,
+                  "key": "construction_methods",
+                  "value": "<string>",
+                  "description": "Comma-separated list of construction method codes (1=Site Built, 2=Manufactured)"
+                },
+                {
+                  "disabled": false,
+                  "key": "derived_dwelling_categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of derived dwelling category codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "derived_loan_product_types",
+                  "value": "<string>",
+                  "description": "Comma-separated list of derived loan product type codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "ethnicities",
+                  "value": "<string>",
+                  "description": "Comma-separated list of ethnicity codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "lien_statuses",
+                  "value": "<string>",
+                  "description": "Comma-separated list of lien status codes (1=First lien, 2=Subordinate lien)"
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_purposes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)"
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_types",
+                  "value": "<string>",
+                  "description": "Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "races",
+                  "value": "<string>",
+                  "description": "Comma-separated list of race codes"
+                },
+                {
+                  "disabled": false,
+                  "key": "sexes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of sex codes (1=Male, 2=Female, 3=Information not provided, 4=Not applicable)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea03edb5-9db3-4656-9579-0d26b55e43d3",
+              "name": "CSV data response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "view",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "years",
+                      "value": "2020"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counties",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "msamds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "leis",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actions_taken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "construction_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_dwelling_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_loan_product_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ethnicities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lien_statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_purposes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "races",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sexes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48caab37-83b0-4b73-b241-d8501cbbc8ee",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "view",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "years",
+                      "value": "2020"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "counties",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "msamds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "leis",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actions_taken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "construction_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_dwelling_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "derived_loan_product_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ethnicities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lien_statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_purposes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loan_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "races",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sexes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "59da8857-254c-4e16-8b84-4a494d7a8100",
+    "name": "Consumer Complaint Database Aggregations CSV API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}

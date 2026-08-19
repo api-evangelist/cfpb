@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Consumer Complaint Database Aggregations Filings API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get filing for institution and period",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              }
+            ]
+          },
+          "docs": "Returns filing details and submission list for an institution in a given filing period"
+        },
+        {
+          "info": {
+            "name": "Create filing for institution and period",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei/filings/:period",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Filing period (year, e.g. 2020)"
+              }
+            ]
+          },
+          "docs": "Creates a new filing for an institution for the given period"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

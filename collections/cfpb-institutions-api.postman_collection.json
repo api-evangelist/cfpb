@@ -1,0 +1,158 @@
+{
+  "item": [
+    {
+      "id": "fdf7ed0f-30fb-4204-bfe2-6f7d041a81cb",
+      "name": "Institutions",
+      "description": {
+        "content": "Financial institution information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78548831-1aab-48b4-aff8-4901cf753ada",
+          "name": "Get institution by LEI",
+          "request": {
+            "name": "Get institution by LEI",
+            "description": {
+              "content": "Returns institution details and list of filings for the given Legal Entity Identifier",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6fd34b3-b9c7-49ac-9255-90db79194cb7",
+              "name": "Institution details with filings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lei\": \"string\",\n  \"agencyCode\": 7236,\n  \"activityYear\": 2902,\n  \"institutionType\": 8702,\n  \"hmdaFiler\": true,\n  \"respondentName\": \"string\",\n  \"filings\": [\n    {\n      \"period\": \"string\",\n      \"lei\": \"string\",\n      \"status\": {\n        \"code\": 5029,\n        \"message\": \"string\"\n      }\n    },\n    {\n      \"period\": \"string\",\n      \"lei\": \"string\",\n      \"status\": {\n        \"code\": 6633,\n        \"message\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f52ef9e6-72de-46f0-98d8-263646a897df",
+              "name": "Institution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7332425c-4e7b-4b19-915f-19d34b1ffbf6",
+    "name": "Consumer Complaint Database Aggregations Institutions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}

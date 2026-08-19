@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Consumer Complaint Database Aggregations Filers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List HMDA filers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/view/filers",
+            "params": [
+              {
+                "name": "years",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of years (e.g. 2018,2019,2020)"
+              },
+              {
+                "name": "states",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of two-letter state abbreviations (e.g. CA,TX)"
+              },
+              {
+                "name": "counties",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of 5-digit FIPS county codes"
+              },
+              {
+                "name": "msamds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of 5-digit MSA/MD codes"
+              },
+              {
+                "name": "leis",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions"
+              }
+            ]
+          },
+          "docs": "Returns a list of financial institutions that filed HMDA data for the specified year(s) and geography or LEI filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Consumer Complaint Database Aggregations Typeahead API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Typeahead",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Suggest possible searches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/_suggest",
+            "params": [
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Limit the size of the results"
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "text to use for suggestions"
+              }
+            ]
+          },
+          "docs": "The endpoint for the main search box in the UI"
+        },
+        {
+          "info": {
+            "name": "Suggest possible companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/_suggest_company",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "text to use for suggestions"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Limit the size of the results"
+              },
+              {
+                "name": "company_public_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of public response by the company"
+              },
+              {
+                "name": "company_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < company_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= company_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of response by the company"
+              },
+              {
+                "name": "date_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < date_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "date_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= date_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "has_narrative",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+              },
+              {
+                "name": "issue",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+              },
+              {
+                "name": "submitted_via",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of way consumers submitted their complaints"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of tag"
+              },
+              {
+                "name": "timely",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to show whether a response was timely"
+              },
+              {
+                "name": "zip_code",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these zip codes"
+              }
+            ]
+          },
+          "docs": "Provide a list of companies that match the input text"
+        },
+        {
+          "info": {
+            "name": "Suggest possible zip codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/_suggest_zip",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "text to use for suggestions"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Limit the size of the results"
+              },
+              {
+                "name": "company_public_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of public response by the company"
+              },
+              {
+                "name": "company_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < company_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= company_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "company_response",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of response by the company"
+              },
+              {
+                "name": "date_received_max",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date < date_received_max (i.e. 2017-03-04)"
+              },
+              {
+                "name": "date_received_min",
+                "value": "",
+                "type": "query",
+                "description": "Return results with date >= date_received_min (i.e. 2017-03-04)"
+              },
+              {
+                "name": "has_narrative",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no"
+              },
+              {
+                "name": "issue",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)"
+              },
+              {
+                "name": "submitted_via",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of way consumers submitted their complaints"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these types of tag"
+              },
+              {
+                "name": "timely",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to show whether a response was timely"
+              },
+              {
+                "name": "zip_code",
+                "value": "",
+                "type": "query",
+                "description": "Filter the results to only return these zip codes"
+              }
+            ]
+          },
+          "docs": "Provide a list of zip codes that match the input text"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

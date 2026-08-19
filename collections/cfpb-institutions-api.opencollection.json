@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Consumer Complaint Database Aggregations Institutions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Institutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get institution by LEI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/institutions/:lei",
+            "params": [
+              {
+                "name": "lei",
+                "value": "",
+                "type": "path",
+                "description": "Legal Entity Identifier of the financial institution"
+              }
+            ]
+          },
+          "docs": "Returns institution details and list of filings for the given Legal Entity Identifier"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

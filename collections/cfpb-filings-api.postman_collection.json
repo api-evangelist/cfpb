@@ -1,0 +1,338 @@
+{
+  "item": [
+    {
+      "id": "e990f875-271f-44b4-9be5-59479b8c940c",
+      "name": "Filings",
+      "description": {
+        "content": "HMDA filing management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c521a4d-ec49-45d5-8f40-2122ac9e7bd6",
+          "name": "Get filing for institution and period",
+          "request": {
+            "name": "Get filing for institution and period",
+            "description": {
+              "content": "Returns filing details and submission list for an institution in a given filing period",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3bd44c8-22cb-4efe-82bd-5a42177830c4",
+              "name": "Filing details with submissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"period\": \"string\",\n  \"lei\": \"string\",\n  \"status\": {\n    \"code\": 5043,\n    \"message\": \"string\"\n  },\n  \"submissions\": [\n    {\n      \"submission\": {\n        \"id\": \"string\",\n        \"status\": {\n          \"code\": 9714,\n          \"message\": \"string\"\n        },\n        \"start\": 4484,\n        \"end\": 8811\n      },\n      \"transmittalSheet\": {\n        \"institutionName\": \"string\",\n        \"year\": 4600,\n        \"quarter\": 8319,\n        \"lei\": \"string\",\n        \"taxId\": \"string\",\n        \"totalLines\": 3972,\n        \"contact\": {\n          \"name\": \"string\",\n          \"phone\": \"string\",\n          \"email\": \"string\",\n          \"address\": {}\n        }\n      }\n    },\n    {\n      \"submission\": {\n        \"id\": \"string\",\n        \"status\": {\n          \"code\": 4534,\n          \"message\": \"string\"\n        },\n        \"start\": 8205,\n        \"end\": 7952\n      },\n      \"transmittalSheet\": {\n        \"institutionName\": \"string\",\n        \"year\": 6686,\n        \"quarter\": 3340,\n        \"lei\": \"string\",\n        \"taxId\": \"string\",\n        \"totalLines\": 3391,\n        \"contact\": {\n          \"name\": \"string\",\n          \"phone\": \"string\",\n          \"email\": \"string\",\n          \"address\": {}\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e63cde99-2562-464a-839b-3fb8b951ddff",
+              "name": "Filing not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60b91781-61ba-47ba-b271-e6a4de044b1a",
+          "name": "Create filing for institution and period",
+          "request": {
+            "name": "Create filing for institution and period",
+            "description": {
+              "content": "Creates a new filing for an institution for the given period",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "institutions",
+                ":lei",
+                "filings",
+                ":period"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) Legal Entity Identifier of the financial institution"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) Filing period (year, e.g. 2020)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdb1daf8-7936-4dd0-8bb0-57866cdf72a9",
+              "name": "Filing created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"period\": \"string\",\n  \"lei\": \"string\",\n  \"status\": {\n    \"code\": 9451,\n    \"message\": \"string\"\n  },\n  \"submissions\": [\n    {\n      \"submission\": {\n        \"id\": \"string\",\n        \"status\": {\n          \"code\": 317,\n          \"message\": \"string\"\n        },\n        \"start\": 205,\n        \"end\": 9356\n      },\n      \"transmittalSheet\": {\n        \"institutionName\": \"string\",\n        \"year\": 7586,\n        \"quarter\": 7342,\n        \"lei\": \"string\",\n        \"taxId\": \"string\",\n        \"totalLines\": 7257,\n        \"contact\": {\n          \"name\": \"string\",\n          \"phone\": \"string\",\n          \"email\": \"string\",\n          \"address\": {}\n        }\n      }\n    },\n    {\n      \"submission\": {\n        \"id\": \"string\",\n        \"status\": {\n          \"code\": 8577,\n          \"message\": \"string\"\n        },\n        \"start\": 3343,\n        \"end\": 6194\n      },\n      \"transmittalSheet\": {\n        \"institutionName\": \"string\",\n        \"year\": 8391,\n        \"quarter\": 6797,\n        \"lei\": \"string\",\n        \"taxId\": \"string\",\n        \"totalLines\": 8734,\n        \"contact\": {\n          \"name\": \"string\",\n          \"phone\": \"string\",\n          \"email\": \"string\",\n          \"address\": {}\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65ec95f0-b81a-4d4c-876c-0d2819c88efe",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "institutions",
+                    ":lei",
+                    "filings",
+                    ":period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) Legal Entity Identifier of the financial institution"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) Filing period (year, e.g. 2020)"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f708415c-1128-4a34-91c0-485700a75a2a",
+    "name": "Consumer Complaint Database Aggregations Filings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.\n\nContact Support:\n Name: Report API Issues",
+      "type": "text/plain"
+    }
+  }
+}
