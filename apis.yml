@@ -176,6 +176,8 @@ apis:
   humanURL: https://cfpb.github.io/api/ccdb/
   baseURL: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
   tags:
+  - institutions
+  tags_raw:
   - Institutions
   properties:
   - type: OpenAPI
