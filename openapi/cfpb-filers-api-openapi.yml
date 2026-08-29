@@ -1,17 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: 1.0.0
-  title: Consumer Complaint Database Aggregations Filers API
-  description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
-  termsOfService: https://cfpb.github.io/source-code-policy/
+  version: 2.0.0
+  title: HMDA Data Browser Filers API
+  description: Provides access to Home Mortgage Disclosure Act (HMDA) data, enabling aggregation reports and CSV downloads of mortgage lending records filtered by geography, financial institution LEI, and year.
   contact:
-    name: Report API Issues
-    url: https://github.com/cfpb/ccdb5-api/issues
+    name: FFIEC HMDA Help
+    url: https://ffiec.cfpb.gov/
   license:
-    name: Creative Commons License CC0
-    url: https://github.com/cfpb/ccdb5-api/blob/main/LICENSE
+    name: Creative Commons CC0
+    url: https://creativecommons.org/publicdomain/zero/1.0/
 servers:
-- url: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
+- url: https://ffiec.cfpb.gov/v2/data-browser-api
   description: Production server
 security: []
 tags:
@@ -41,16 +40,16 @@ paths:
           description: Bad request - invalid parameters
 components:
   parameters:
-    msamds:
-      name: msamds
-      in: query
-      description: Comma-separated list of 5-digit MSA/MD codes
-      schema:
-        type: string
     counties:
       name: counties
       in: query
       description: Comma-separated list of 5-digit FIPS county codes
+      schema:
+        type: string
+    leis:
+      name: leis
+      in: query
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
       schema:
         type: string
     states:
@@ -59,10 +58,10 @@ components:
       description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
       schema:
         type: string
-    leis:
-      name: leis
+    msamds:
+      name: msamds
       in: query
-      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
+      description: Comma-separated list of 5-digit MSA/MD codes
       schema:
         type: string
     years:
@@ -93,6 +92,3 @@ components:
         period:
           type: string
           description: Filing period year
-externalDocs:
-  description: Additional API Information
-  url: https://cfpb.github.io/api/ccdb/

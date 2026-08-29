@@ -1,34 +1,43 @@
 {
   "provider": "cfpb",
   "sources": [
-    "cfpb-aggregations-api-openapi.yml",
-    "cfpb-complaints-api-openapi.yml",
-    "cfpb-csv-api-openapi.yml",
-    "cfpb-edits-api-openapi.yml",
-    "cfpb-filers-api-openapi.yml",
-    "cfpb-filings-api-openapi.yml",
-    "cfpb-health-api-openapi.yml",
-    "cfpb-institutions-api-openapi.yml",
-    "cfpb-submissions-api-openapi.yml",
-    "cfpb-trends-api-openapi.yml",
-    "cfpb-typeahead-api-openapi.yml"
+    "_original/cfpb-consumer-complaint-database-api-openapi.yml",
+    "_original/cfpb-hmda-data-browser-api-openapi.yml",
+    "_original/cfpb-hmda-filing-api-openapi.yml"
   ],
   "outputs": [
-    "cfpb-aggregations-api-openapi.yml",
     "cfpb-complaints-api-openapi.yml",
+    "cfpb-trends-api-openapi.yml",
+    "cfpb-typeahead-api-openapi.yml",
+    "cfpb-aggregations-api-openapi.yml",
     "cfpb-csv-api-openapi.yml",
-    "cfpb-edits-api-openapi.yml",
     "cfpb-filers-api-openapi.yml",
+    "cfpb-edits-api-openapi.yml",
     "cfpb-filings-api-openapi.yml",
     "cfpb-health-api-openapi.yml",
     "cfpb-institutions-api-openapi.yml",
-    "cfpb-submissions-api-openapi.yml",
-    "cfpb-trends-api-openapi.yml",
-    "cfpb-typeahead-api-openapi.yml"
+    "cfpb-submissions-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cfpb-consumer-complaint-database-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "cfpb-hmda-data-browser-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "cfpb-hmda-filing-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "cfpb-aggregations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-complaints-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-csv-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-edits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-filers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-filings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-institutions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-submissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-trends-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cfpb-typeahead-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

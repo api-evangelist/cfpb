@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Consumer Complaint Database Aggregations Typeahead API
+  title: Consumer Complaint Database Typeahead API
   description: The API for searching the CFPB Consumer Complaint Database, which contains over 15 million consumer financial complaint records.
   termsOfService: https://cfpb.github.io/source-code-policy/
   contact:
@@ -102,17 +102,29 @@ paths:
           description: Invalid input
 components:
   parameters:
-    company_received_max:
-      name: company_received_max
+    size:
+      name: size
       in: query
-      description: Return results with date < company_received_max (i.e. 2017-03-04)
+      description: Limit the size of the results
       schema:
-        type: string
-        format: date
-    state:
-      name: state
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 100
+        default: 10
+    submitted_via:
+      name: submitted_via
       in: query
-      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
+      description: Filter the results to only return these types of way consumers submitted their complaints
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    tags:
+      name: tags
+      in: query
+      description: Filter the results to only return these types of tag
       explode: true
       schema:
         type: array
@@ -122,6 +134,22 @@ components:
       name: zip_code
       in: query
       description: Filter the results to only return these zip codes
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_received_max:
+      name: company_received_max
+      in: query
+      description: Return results with date < company_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    company_public_response:
+      name: company_public_response
+      in: query
+      description: Filter the results to only return these types of public response by the company
       explode: true
       schema:
         type: array
@@ -143,45 +171,10 @@ components:
       schema:
         type: string
         format: date
-    suggest_text:
-      name: text
-      in: query
-      description: text to use for suggestions
-      required: true
-      schema:
-        type: string
     has_narrative:
       name: has_narrative
       in: query
       description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    size:
-      name: size
-      in: query
-      description: Limit the size of the results
-      schema:
-        type: integer
-        format: int64
-        minimum: 1
-        maximum: 100
-        default: 10
-    product:
-      name: product
-      in: query
-      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    tags:
-      name: tags
-      in: query
-      description: Filter the results to only return these types of tag
       explode: true
       schema:
         type: array
@@ -196,6 +189,13 @@ components:
         type: array
         items:
           type: string
+    date_received_max:
+      name: date_received_max
+      in: query
+      description: Return results with date < date_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
     company_received_min:
       name: company_received_min
       in: query
@@ -203,6 +203,15 @@ components:
       schema:
         type: string
         format: date
+    product:
+      name: product
+      in: query
+      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
     company_response:
       name: company_response
       in: query
@@ -212,31 +221,22 @@ components:
         type: array
         items:
           type: string
-    company_public_response:
-      name: company_public_response
+    suggest_text:
+      name: text
       in: query
-      description: Filter the results to only return these types of public response by the company
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    submitted_via:
-      name: submitted_via
-      in: query
-      description: Filter the results to only return these types of way consumers submitted their complaints
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    date_received_max:
-      name: date_received_max
-      in: query
-      description: Return results with date < date_received_max (i.e. 2017-03-04)
+      description: text to use for suggestions
+      required: true
       schema:
         type: string
-        format: date
+    state:
+      name: state
+      in: query
+      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
   schemas:
     SuggestResult:
       type: array
