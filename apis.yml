@@ -267,6 +267,9 @@ apis:
   - type: Documentation
     url: https://ffiec.cfpb.gov/documentation/category/developer-apis
 common:
+  - type: CapabilityMap
+    url: capabilities/cfpb-capability-edges.yml
+    name: Consumer Financial Protection Bureau (CFPB) Business Capability Map
   - type: IssueTracker
     url: https://github.com/cfpb/ccdb5-api/issues
   - type: Releases

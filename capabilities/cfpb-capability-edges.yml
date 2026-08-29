@@ -1,0 +1,35 @@
+slug: cfpb
+provider: Consumer Financial Protection Bureau (CFPB)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Public Sector & Government
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Submissions
+  spec_file: cfpb-submissions-api-openapi.yml
+  capability_id: BC-200.70
+  capability_id_l1: BC-200
+  capability_name: Statutory & Regulatory Reporting
+  confidence: 0.75
+  evidence: POST /institutions/{lei}/filings/{period}/submissions/{submissionId}  Upload HMDA data file;
+    POST .../sign  Sign submission
+  reason: Upload, status tracking and formal signing of a loan application register submission to a financial
+    regulator — the execution of a mandated regulatory financial submission by the filing institution.
+- tag: Filings
+  spec_file: cfpb-filings-api-openapi.yml
+  capability_id: BC-200.70
+  capability_id_l1: BC-200
+  capability_name: Statutory & Regulatory Reporting
+  confidence: 0.7
+  evidence: POST /institutions/{lei}/filings/{period}  Create filing for institution and period
+  reason: Creation and retrieval of a periodic statutory filing by a regulated institution to the FFIEC
+    HMDA Platform — a regulatory reporting submission lifecycle. Schemas Filing, FilingStatus, TransmittalSheet
+    corroborate.
