@@ -60,66 +60,17 @@ paths:
                 $ref: '#/components/schemas/TrendsResult'
         '400':
           description: Invalid status value
+      operationId: getTrends
+      x-operation-id-source: derived
 components:
   parameters:
-    sub_lens_depth:
-      name: sub_lens_depth
+    company_received_min:
+      name: company_received_min
       in: query
-      description: The top X trend sub aggregations will be returned, where X is the supplied sub_lens_depth.
-      schema:
-        type: integer
-        maximum: 10000000
-        minimum: 5
-        format: int64
-        default: 10
-    sub_lens:
-      name: sub_lens
-      in: query
-      description: The sub-lens through which to view complaint trends over time.
+      description: Return results with date >= company_received_min (i.e. 2017-03-04)
       schema:
         type: string
-        enum:
-        - issue
-        - product
-        - sub_product
-        - sub_issue
-        - tags
-    focus:
-      name: focus
-      in: query
-      description: The name of the product or company on which to focus charts for products and issues
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    timely:
-      name: timely
-      in: query
-      description: Filter the results to show whether a response was timely
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    issue:
-      name: issue
-      in: query
-      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    state:
-      name: state
-      in: query
-      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
+        format: date
     date_received_min:
       name: date_received_min
       in: query
@@ -127,15 +78,6 @@ components:
       schema:
         type: string
         format: date
-    tags:
-      name: tags
-      in: query
-      description: Filter the results to only return these types of tag
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
     zip_code:
       name: zip_code
       in: query
@@ -154,29 +96,41 @@ components:
         type: array
         items:
           type: string
-    trend_depth:
-      name: trend_depth
+    trend_interval:
+      name: trend_interval
       in: query
-      description: The top X trend aggregations will be returned, where X is the supplied trend_depth.
+      description: The interval of time to use for trends aggregations histograms.
+      required: true
       schema:
-        type: integer
-        maximum: 10000000
-        minimum: 5
-        format: int64
-        default: 10
-    has_narrative:
-      name: has_narrative
+        type: string
+        enum:
+        - year
+        - quarter
+        - month
+        - week
+        - day
+    issue:
+      name: issue
       in: query
-      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
+      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
       explode: true
       schema:
         type: array
         items:
           type: string
-    product:
-      name: product
+    tags:
+      name: tags
       in: query
-      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      description: Filter the results to only return these types of tag
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    has_narrative:
+      name: has_narrative
+      in: query
+      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
       explode: true
       schema:
         type: array
@@ -195,48 +149,6 @@ components:
         - product
         - tags
         default: overview
-    submitted_via:
-      name: submitted_via
-      in: query
-      description: Filter the results to only return these types of way consumers submitted their complaints
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    company_received_min:
-      name: company_received_min
-      in: query
-      description: Return results with date >= company_received_min (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    search_term:
-      name: search_term
-      in: query
-      description: Return results containing specific term
-      schema:
-        type: string
-    trend_interval:
-      name: trend_interval
-      in: query
-      description: The interval of time to use for trends aggregations histograms.
-      required: true
-      schema:
-        type: string
-        enum:
-        - year
-        - quarter
-        - month
-        - week
-        - day
-    company_received_max:
-      name: company_received_max
-      in: query
-      description: Return results with date < company_received_max (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
     company:
       name: company
       in: query
@@ -246,6 +158,43 @@ components:
         type: array
         items:
           type: string
+    state:
+      name: state
+      in: query
+      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_response:
+      name: company_response
+      in: query
+      description: Filter the results to only return these types of response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    focus:
+      name: focus
+      in: query
+      description: The name of the product or company on which to focus charts for products and issues
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    trend_depth:
+      name: trend_depth
+      in: query
+      description: The top X trend aggregations will be returned, where X is the supplied trend_depth.
+      schema:
+        type: integer
+        maximum: 10000000
+        minimum: 5
+        format: int64
+        default: 10
     date_received_max:
       name: date_received_max
       in: query
@@ -253,6 +202,24 @@ components:
       schema:
         type: string
         format: date
+    product:
+      name: product
+      in: query
+      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    timely:
+      name: timely
+      in: query
+      description: Filter the results to show whether a response was timely
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
     field:
       name: field
       in: query
@@ -264,16 +231,59 @@ components:
         - company_public_response
         - all
         default: complaint_what_happened
-    company_response:
-      name: company_response
+    sub_lens_depth:
+      name: sub_lens_depth
       in: query
-      description: Filter the results to only return these types of response by the company
+      description: The top X trend sub aggregations will be returned, where X is the supplied sub_lens_depth.
+      schema:
+        type: integer
+        maximum: 10000000
+        minimum: 5
+        format: int64
+        default: 10
+    submitted_via:
+      name: submitted_via
+      in: query
+      description: Filter the results to only return these types of way consumers submitted their complaints
       explode: true
       schema:
         type: array
         items:
           type: string
+    search_term:
+      name: search_term
+      in: query
+      description: Return results containing specific term
+      schema:
+        type: string
+    sub_lens:
+      name: sub_lens
+      in: query
+      description: The sub-lens through which to view complaint trends over time.
+      schema:
+        type: string
+        enum:
+        - issue
+        - product
+        - sub_product
+        - sub_issue
+        - tags
+    company_received_max:
+      name: company_received_max
+      in: query
+      description: Return results with date < company_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
   schemas:
+    MultiLevelBucket:
+      type: object
+      properties:
+        doc_count:
+          type: integer
+          description: The number of complaints that match this key
+        key:
+          type: string
     MultiLevelAggregation:
       type: object
       properties:
@@ -312,14 +322,6 @@ components:
               $ref: '#/components/schemas/MultiLevelAggregation'
             tags:
               $ref: '#/components/schemas/MultiLevelAggregation'
-    MultiLevelBucket:
-      type: object
-      properties:
-        doc_count:
-          type: integer
-          description: The number of complaints that match this key
-        key:
-          type: string
 externalDocs:
   description: Additional API Information
   url: https://cfpb.github.io/api/ccdb/

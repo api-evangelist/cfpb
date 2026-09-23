@@ -36,6 +36,8 @@ paths:
                 $ref: '#/components/schemas/Filing'
         '404':
           description: Filing not found
+      operationId: getInstitutionsByLeiFilingsByPeriod
+      x-operation-id-source: derived
     post:
       tags:
       - Filings
@@ -53,7 +55,26 @@ paths:
                 $ref: '#/components/schemas/Filing'
         '400':
           description: Bad request
+      operationId: postInstitutionsByLeiFilingsByPeriod
+      x-operation-id-source: derived
 components:
+  parameters:
+    period:
+      name: period
+      in: path
+      required: true
+      description: Filing period (year, e.g. 2020)
+      schema:
+        type: string
+        example: '2020'
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
   schemas:
     FilingStatus:
       type: object
@@ -64,53 +85,6 @@ components:
         message:
           type: string
           description: Status message
-    Submission:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Submission identifier
-        status:
-          $ref: '#/components/schemas/SubmissionStatus'
-        start:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission started
-        end:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission ended
-    Filing:
-      type: object
-      properties:
-        period:
-          type: string
-          description: Filing period year
-        lei:
-          type: string
-          description: Legal Entity Identifier
-        status:
-          $ref: '#/components/schemas/FilingStatus'
-        submissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/SubmissionSummary'
-    SubmissionStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code
-        message:
-          type: string
-          description: Status message
-    SubmissionSummary:
-      type: object
-      properties:
-        submission:
-          $ref: '#/components/schemas/Submission'
-        transmittalSheet:
-          $ref: '#/components/schemas/TransmittalSheet'
     TransmittalSheet:
       type: object
       properties:
@@ -143,23 +117,53 @@ components:
               type: string
             address:
               type: object
-  parameters:
-    period:
-      name: period
-      in: path
-      required: true
-      description: Filing period (year, e.g. 2020)
-      schema:
-        type: string
-        example: '2020'
-    lei:
-      name: lei
-      in: path
-      required: true
-      description: Legal Entity Identifier of the financial institution
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD
+    Filing:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Filing period year
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        status:
+          $ref: '#/components/schemas/FilingStatus'
+        submissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionSummary'
+    SubmissionSummary:
+      type: object
+      properties:
+        submission:
+          $ref: '#/components/schemas/Submission'
+        transmittalSheet:
+          $ref: '#/components/schemas/TransmittalSheet'
+    SubmissionStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
+    Submission:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Submission identifier
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        start:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission started
+        end:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission ended
   securitySchemes:
     bearerAuth:
       type: http

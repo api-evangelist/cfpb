@@ -45,6 +45,8 @@ paths:
                 format: binary
         '400':
           description: Bad request - invalid parameters
+      operationId: getViewNationwideCsv
+      x-operation-id-source: derived
   /view/csv:
     get:
       tags:
@@ -77,42 +79,14 @@ paths:
                 format: binary
         '400':
           description: Bad request - invalid parameters
+      operationId: getViewCsv
+      x-operation-id-source: derived
 components:
   parameters:
-    lien_statuses:
-      name: lien_statuses
+    races:
+      name: races
       in: query
-      description: Comma-separated list of lien status codes (1=First lien, 2=Subordinate lien)
-      schema:
-        type: string
-    sexes:
-      name: sexes
-      in: query
-      description: Comma-separated list of sex codes (1=Male, 2=Female, 3=Information not provided, 4=Not applicable)
-      schema:
-        type: string
-    counties:
-      name: counties
-      in: query
-      description: Comma-separated list of 5-digit FIPS county codes
-      schema:
-        type: string
-    leis:
-      name: leis
-      in: query
-      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
-      schema:
-        type: string
-    states:
-      name: states
-      in: query
-      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
-      schema:
-        type: string
-    loan_purposes:
-      name: loan_purposes
-      in: query
-      description: Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)
+      description: Comma-separated list of race codes
       schema:
         type: string
     msamds:
@@ -121,10 +95,10 @@ components:
       description: Comma-separated list of 5-digit MSA/MD codes
       schema:
         type: string
-    loan_types:
-      name: loan_types
+    construction_methods:
+      name: construction_methods
       in: query
-      description: Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)
+      description: Comma-separated list of construction method codes (1=Site Built, 2=Manufactured)
       schema:
         type: string
     derived_dwelling_categories:
@@ -133,16 +107,10 @@ components:
       description: Comma-separated list of derived dwelling category codes
       schema:
         type: string
-    races:
-      name: races
+    loan_purposes:
+      name: loan_purposes
       in: query
-      description: Comma-separated list of race codes
-      schema:
-        type: string
-    ethnicities:
-      name: ethnicities
-      in: query
-      description: Comma-separated list of ethnicity codes
+      description: Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)
       schema:
         type: string
     years:
@@ -153,21 +121,57 @@ components:
       schema:
         type: string
         example: '2020'
-    derived_loan_product_types:
-      name: derived_loan_product_types
+    leis:
+      name: leis
       in: query
-      description: Comma-separated list of derived loan product type codes
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
       schema:
         type: string
-    construction_methods:
-      name: construction_methods
+    sexes:
+      name: sexes
       in: query
-      description: Comma-separated list of construction method codes (1=Site Built, 2=Manufactured)
+      description: Comma-separated list of sex codes (1=Male, 2=Female, 3=Information not provided, 4=Not applicable)
       schema:
         type: string
     actions_taken:
       name: actions_taken
       in: query
       description: Comma-separated list of action taken codes (1-8)
+      schema:
+        type: string
+    counties:
+      name: counties
+      in: query
+      description: Comma-separated list of 5-digit FIPS county codes
+      schema:
+        type: string
+    ethnicities:
+      name: ethnicities
+      in: query
+      description: Comma-separated list of ethnicity codes
+      schema:
+        type: string
+    states:
+      name: states
+      in: query
+      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
+      schema:
+        type: string
+    derived_loan_product_types:
+      name: derived_loan_product_types
+      in: query
+      description: Comma-separated list of derived loan product type codes
+      schema:
+        type: string
+    lien_statuses:
+      name: lien_statuses
+      in: query
+      description: Comma-separated list of lien status codes (1=First lien, 2=Subordinate lien)
+      schema:
+        type: string
+    loan_types:
+      name: loan_types
+      in: query
+      description: Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)
       schema:
         type: string

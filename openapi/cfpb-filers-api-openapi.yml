@@ -38,26 +38,10 @@ paths:
                 $ref: '#/components/schemas/FilersResult'
         '400':
           description: Bad request - invalid parameters
+      operationId: getViewFilers
+      x-operation-id-source: derived
 components:
   parameters:
-    counties:
-      name: counties
-      in: query
-      description: Comma-separated list of 5-digit FIPS county codes
-      schema:
-        type: string
-    leis:
-      name: leis
-      in: query
-      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
-      schema:
-        type: string
-    states:
-      name: states
-      in: query
-      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
-      schema:
-        type: string
     msamds:
       name: msamds
       in: query
@@ -72,14 +56,25 @@ components:
       schema:
         type: string
         example: '2020'
+    leis:
+      name: leis
+      in: query
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
+      schema:
+        type: string
+    counties:
+      name: counties
+      in: query
+      description: Comma-separated list of 5-digit FIPS county codes
+      schema:
+        type: string
+    states:
+      name: states
+      in: query
+      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
+      schema:
+        type: string
   schemas:
-    FilersResult:
-      type: object
-      properties:
-        institutions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Institution'
     Institution:
       type: object
       properties:
@@ -92,3 +87,10 @@ components:
         period:
           type: string
           description: Filing period year
+    FilersResult:
+      type: object
+      properties:
+        institutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Institution'

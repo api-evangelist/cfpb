@@ -36,6 +36,8 @@ paths:
                 $ref: '#/components/schemas/Submission'
         '400':
           description: Bad request
+      operationId: postInstitutionsByLeiFilingsByPeriodSubmissions
+      x-operation-id-source: derived
   /institutions/{lei}/filings/{period}/submissions/latest:
     get:
       tags:
@@ -54,6 +56,8 @@ paths:
                 $ref: '#/components/schemas/Submission'
         '404':
           description: No submissions found
+      operationId: getInstitutionsByLeiFilingsByPeriodSubmissionsLatest
+      x-operation-id-source: derived
   /institutions/{lei}/filings/{period}/submissions/{submissionId}:
     post:
       tags:
@@ -86,6 +90,8 @@ paths:
           description: Invalid file format
         '404':
           description: Submission not found
+      operationId: postInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionId
+      x-operation-id-source: derived
   /institutions/{lei}/filings/{period}/submissions/{submissionId}/sign:
     get:
       tags:
@@ -105,6 +111,8 @@ paths:
                 $ref: '#/components/schemas/SignatureReceipt'
         '404':
           description: Submission not found
+      operationId: getInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdSign
+      x-operation-id-source: derived
     post:
       tags:
       - Submissions
@@ -135,6 +143,8 @@ paths:
           description: Submission cannot be signed (edits not verified)
         '404':
           description: Submission not found
+      operationId: postInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdSign
+      x-operation-id-source: derived
   /institutions/{lei}/filings/{period}/submissions/{submissionId}/summary:
     get:
       tags:
@@ -154,52 +164,35 @@ paths:
                 $ref: '#/components/schemas/SubmissionSummary'
         '404':
           description: Submission not found
+      operationId: getInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdSummary
+      x-operation-id-source: derived
 components:
+  parameters:
+    period:
+      name: period
+      in: path
+      required: true
+      description: Filing period (year, e.g. 2020)
+      schema:
+        type: string
+        example: '2020'
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
+    submissionId:
+      name: submissionId
+      in: path
+      required: true
+      description: Submission identifier
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD-2020-1
   schemas:
-    Submission:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Submission identifier
-        status:
-          $ref: '#/components/schemas/SubmissionStatus'
-        start:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission started
-        end:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission ended
-    SignatureReceipt:
-      type: object
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-          description: Unix timestamp of signing
-        receipt:
-          type: string
-          description: Receipt code
-        status:
-          $ref: '#/components/schemas/SubmissionStatus'
-    SubmissionStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code
-        message:
-          type: string
-          description: Status message
-    SubmissionSummary:
-      type: object
-      properties:
-        submission:
-          $ref: '#/components/schemas/Submission'
-        transmittalSheet:
-          $ref: '#/components/schemas/TransmittalSheet'
     TransmittalSheet:
       type: object
       properties:
@@ -232,31 +225,50 @@ components:
               type: string
             address:
               type: object
-  parameters:
-    submissionId:
-      name: submissionId
-      in: path
-      required: true
-      description: Submission identifier
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD-2020-1
-    period:
-      name: period
-      in: path
-      required: true
-      description: Filing period (year, e.g. 2020)
-      schema:
-        type: string
-        example: '2020'
-    lei:
-      name: lei
-      in: path
-      required: true
-      description: Legal Entity Identifier of the financial institution
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD
+    SignatureReceipt:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp of signing
+        receipt:
+          type: string
+          description: Receipt code
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+    SubmissionSummary:
+      type: object
+      properties:
+        submission:
+          $ref: '#/components/schemas/Submission'
+        transmittalSheet:
+          $ref: '#/components/schemas/TransmittalSheet'
+    SubmissionStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
+    Submission:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Submission identifier
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        start:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission started
+        end:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission ended
   securitySchemes:
     bearerAuth:
       type: http

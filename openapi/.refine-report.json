@@ -25,7 +25,8 @@
     "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "cfpb-consumer-complaint-database-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "cfpb-hmda-data-browser-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
-    "cfpb-hmda-filing-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0"
+    "cfpb-hmda-filing-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "cfpb-aggregations-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -35,17 +35,21 @@ paths:
                 $ref: '#/components/schemas/Institution'
         '404':
           description: Institution not found
+      operationId: getInstitutionsByLei
+      x-operation-id-source: derived
 components:
   schemas:
-    FilingStatus:
+    FilingSummary:
       type: object
       properties:
-        code:
-          type: integer
-          description: Status code
-        message:
+        period:
           type: string
-          description: Status message
+          description: Filing period year
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        status:
+          $ref: '#/components/schemas/FilingStatus'
     Institution:
       type: object
       properties:
@@ -71,17 +75,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FilingSummary'
-    FilingSummary:
+    FilingStatus:
       type: object
       properties:
-        period:
+        code:
+          type: integer
+          description: Status code
+        message:
           type: string
-          description: Filing period year
-        lei:
-          type: string
-          description: Legal Entity Identifier
-        status:
-          $ref: '#/components/schemas/FilingStatus'
+          description: Status message
   parameters:
     lei:
       name: lei

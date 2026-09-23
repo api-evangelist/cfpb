@@ -43,6 +43,8 @@ paths:
                 $ref: '#/components/schemas/ParseErrors'
         '404':
           description: Submission not found
+      operationId: getInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdParseErrors
+      x-operation-id-source: derived
   /institutions/{lei}/filings/{period}/submissions/{submissionId}/edits:
     get:
       tags:
@@ -62,6 +64,8 @@ paths:
                 $ref: '#/components/schemas/Edits'
         '404':
           description: Submission not found
+      operationId: getInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdEdits
+      x-operation-id-source: derived
   /institutions/{lei}/filings/{period}/submissions/{submissionId}/edits/{editType}:
     post:
       tags:
@@ -100,6 +104,8 @@ paths:
                 $ref: '#/components/schemas/EditVerification'
         '404':
           description: Submission not found
+      operationId: postInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdEditsByEditType
+      x-operation-id-source: derived
   /institutions/{lei}/filings/{period}/submissions/{submissionId}/edits/{editName}:
     get:
       tags:
@@ -125,7 +131,34 @@ paths:
                 $ref: '#/components/schemas/EditDetail'
         '404':
           description: Edit not found
+      operationId: getInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdEditsByEditName
+      x-operation-id-source: derived
 components:
+  parameters:
+    period:
+      name: period
+      in: path
+      required: true
+      description: Filing period (year, e.g. 2020)
+      schema:
+        type: string
+        example: '2020'
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
+    submissionId:
+      name: submissionId
+      in: path
+      required: true
+      description: Submission identifier
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD-2020-1
   schemas:
     EditVerification:
       type: object
@@ -135,84 +168,6 @@ components:
           description: Whether the edits are verified
         status:
           $ref: '#/components/schemas/SubmissionStatus'
-    PaginationLinks:
-      type: object
-      properties:
-        href:
-          type: string
-          description: Template URL for pagination
-        self:
-          type: string
-          description: URL for current page
-        next:
-          type: string
-          description: URL for next page
-        prev:
-          type: string
-          description: URL for previous page
-        first:
-          type: string
-          description: URL for first page
-        last:
-          type: string
-          description: URL for last page
-    Edit:
-      type: object
-      properties:
-        edit:
-          type: string
-          description: Edit name/code
-        description:
-          type: string
-          description: Edit description
-        rows:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-    Edits:
-      type: object
-      properties:
-        syntactical:
-          $ref: '#/components/schemas/EditGroup'
-        validity:
-          $ref: '#/components/schemas/EditGroup'
-        quality:
-          $ref: '#/components/schemas/EditGroup'
-        macro:
-          $ref: '#/components/schemas/EditGroup'
-    EditDetail:
-      type: object
-      properties:
-        edit:
-          type: string
-          description: Edit name
-        rows:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-        _links:
-          $ref: '#/components/schemas/PaginationLinks'
-    SubmissionStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code
-        message:
-          type: string
-          description: Status message
-    EditGroup:
-      type: object
-      properties:
-        edits:
-          type: array
-          items:
-            $ref: '#/components/schemas/Edit'
-        verified:
-          type: boolean
-          description: Whether these edits have been verified (quality and macro only)
     ParseErrors:
       type: object
       properties:
@@ -240,31 +195,84 @@ components:
           description: Total number of records with errors
         _links:
           $ref: '#/components/schemas/PaginationLinks'
-  parameters:
-    submissionId:
-      name: submissionId
-      in: path
-      required: true
-      description: Submission identifier
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD-2020-1
-    period:
-      name: period
-      in: path
-      required: true
-      description: Filing period (year, e.g. 2020)
-      schema:
-        type: string
-        example: '2020'
-    lei:
-      name: lei
-      in: path
-      required: true
-      description: Legal Entity Identifier of the financial institution
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD
+    PaginationLinks:
+      type: object
+      properties:
+        href:
+          type: string
+          description: Template URL for pagination
+        self:
+          type: string
+          description: URL for current page
+        next:
+          type: string
+          description: URL for next page
+        prev:
+          type: string
+          description: URL for previous page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
+    EditGroup:
+      type: object
+      properties:
+        edits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Edit'
+        verified:
+          type: boolean
+          description: Whether these edits have been verified (quality and macro only)
+    EditDetail:
+      type: object
+      properties:
+        edit:
+          type: string
+          description: Edit name
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        _links:
+          $ref: '#/components/schemas/PaginationLinks'
+    SubmissionStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
+    Edits:
+      type: object
+      properties:
+        syntactical:
+          $ref: '#/components/schemas/EditGroup'
+        validity:
+          $ref: '#/components/schemas/EditGroup'
+        quality:
+          $ref: '#/components/schemas/EditGroup'
+        macro:
+          $ref: '#/components/schemas/EditGroup'
+    Edit:
+      type: object
+      properties:
+        edit:
+          type: string
+          description: Edit name/code
+        description:
+          type: string
+          description: Edit description
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
