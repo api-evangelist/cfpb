@@ -126,6 +126,213 @@ paths:
       operationId: getGeoStates
       x-operation-id-source: derived
 components:
+  parameters:
+    format:
+      name: format
+      in: query
+      description: Format to be returned, if this parameter is not specified, frm/size parameters can be used properly, but if a format is specified for exporting, frm/size will be ignored
+      schema:
+        type: string
+        enum:
+        - json
+        - csv
+        default: json
+    search_term:
+      name: search_term
+      in: query
+      description: Return results containing specific term
+      schema:
+        type: string
+    from:
+      name: frm
+      in: query
+      description: Return results starting from a specific index, only if format parameter is not specified, ignore otherwise
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 100000
+        default: 0
+    submitted_via:
+      name: submitted_via
+      in: query
+      description: Filter the results to only return these types of way consumers submitted their complaints
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    tags:
+      name: tags
+      in: query
+      description: Filter the results to only return these types of tag
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    state:
+      name: state
+      in: query
+      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_public_response:
+      name: company_public_response
+      in: query
+      description: Filter the results to only return these types of public response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    date_received_min:
+      name: date_received_min
+      in: query
+      description: Return results with date >= date_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    date_received_max:
+      name: date_received_max
+      in: query
+      description: Return results with date < date_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    no_highlight:
+      name: no_highlight
+      in: query
+      description: Include highlight of search term in result or not, True means no highlighting will be included, False means highlighting will be included.
+      schema:
+        type: boolean
+        default: false
+    field:
+      name: field
+      in: query
+      description: If the parameter "search_term" has a value, use "field" to specify which field is searched. If not specified, "complaint_what_happened" will be searched.
+      schema:
+        type: string
+        enum:
+        - complaint_what_happened
+        - company_public_response
+        - all
+        default: complaint_what_happened
+    zip_code:
+      name: zip_code
+      in: query
+      description: Filter the results to only return these zip codes
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_response:
+      name: company_response
+      in: query
+      description: Filter the results to only return these types of response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    size:
+      name: size
+      in: query
+      description: Limit the size of the results
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 100
+        default: 10
+    sort:
+      name: sort
+      in: query
+      description: Return results sort in a particular order
+      schema:
+        type: string
+        enum:
+        - relevance_desc
+        - relevance_asc
+        - created_date_desc
+        - created_date_asc
+        default: relevance_desc
+    search_after:
+      name: search_after
+      in: query
+      description: Used in conjunction with frm parameter to paginate results.
+      schema:
+        type: string
+    timely:
+      name: timely
+      in: query
+      description: Filter the results to show whether a response was timely
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_received_max:
+      name: company_received_max
+      in: query
+      description: Return results with date < company_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    has_narrative:
+      name: has_narrative
+      in: query
+      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company:
+      name: company
+      in: query
+      description: Filter the results to only return these companies
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    issue:
+      name: issue
+      in: query
+      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    product:
+      name: product
+      in: query
+      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    no_aggs:
+      name: no_aggs
+      in: query
+      description: Include aggregations in result or not, True means no aggregations will be included, False means aggregations will be included.
+      schema:
+        type: boolean
+        default: false
+    company_received_min:
+      name: company_received_min
+      in: query
+      description: Return results with date >= company_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
   schemas:
     Complaint:
       type: object
@@ -185,6 +392,40 @@ components:
         zip_code:
           type: string
           description: The mailing ZIP code provided by the consumer
+    Bucket:
+      type: object
+      properties:
+        doc_count:
+          type: integer
+          description: The number of complaints that match this key
+        key:
+          type: string
+    MultiLevelAggregation:
+      type: object
+      properties:
+        doc_count:
+          type: integer
+          description: The total number of complaints covered in this aggregation
+        field:
+          type: object
+          description: The name of the field being aggregated
+          properties:
+            buckets:
+              type: array
+              items:
+                $ref: '#/components/schemas/MultiLevelBucket'
+            doc_count_error_upper_bound:
+              type: integer
+              description: The number of possible errors that occurred when searching the shards
+            sum_other_doc_count:
+              type: integer
+              description: The number of complaints that were not included in this aggregation.
+    Hit:
+      type: object
+      description: A single OpenSearch result
+      properties:
+        _source:
+          $ref: '#/components/schemas/Complaint'
     MultiLevelBucket:
       type: object
       properties:
@@ -214,26 +455,18 @@ components:
             relation:
               type: string
               description: Indicates the accuracy of the response (eq or gte)
-    MultiLevelAggregation:
+    StatesResult:
       type: object
       properties:
-        doc_count:
-          type: integer
-          description: The total number of complaints covered in this aggregation
-        field:
+        aggregations:
           type: object
-          description: The name of the field being aggregated
           properties:
-            buckets:
-              type: array
-              items:
-                $ref: '#/components/schemas/MultiLevelBucket'
-            doc_count_error_upper_bound:
-              type: integer
-              description: The number of possible errors that occurred when searching the shards
-            sum_other_doc_count:
-              type: integer
-              description: The number of complaints that were not included in this aggregation.
+            issue:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            product:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            state:
+              $ref: '#/components/schemas/MultiLevelAggregation'
     SearchResult:
       type: object
       properties:
@@ -264,12 +497,27 @@ components:
               $ref: '#/components/schemas/Aggregation'
         hits:
           $ref: '#/components/schemas/Hits'
-    Hit:
+    Aggregation:
       type: object
-      description: A single OpenSearch result
+      description: An OpenSearch aggregation
       properties:
-        _source:
-          $ref: '#/components/schemas/Complaint'
+        doc_count:
+          type: integer
+          description: The total number of complaints covered in this aggregation
+        field:
+          type: object
+          description: The name of the field being aggregated
+          properties:
+            buckets:
+              type: array
+              items:
+                $ref: '#/components/schemas/Bucket'
+            doc_count_error_upper_bound:
+              type: integer
+              description: The number of possible errors that occurred when searching the shards
+            sum_other_doc_count:
+              type: integer
+              description: The number of complaints that were not included in this aggregation.
     Meta:
       type: object
       properties:
@@ -299,254 +547,6 @@ components:
         total_record_count:
           type: integer
           description: The total number of complaints currently indexed
-    StatesResult:
-      type: object
-      properties:
-        aggregations:
-          type: object
-          properties:
-            issue:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-            product:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-            state:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-    Bucket:
-      type: object
-      properties:
-        doc_count:
-          type: integer
-          description: The number of complaints that match this key
-        key:
-          type: string
-    Aggregation:
-      type: object
-      description: An OpenSearch aggregation
-      properties:
-        doc_count:
-          type: integer
-          description: The total number of complaints covered in this aggregation
-        field:
-          type: object
-          description: The name of the field being aggregated
-          properties:
-            buckets:
-              type: array
-              items:
-                $ref: '#/components/schemas/Bucket'
-            doc_count_error_upper_bound:
-              type: integer
-              description: The number of possible errors that occurred when searching the shards
-            sum_other_doc_count:
-              type: integer
-              description: The number of complaints that were not included in this aggregation.
-  parameters:
-    company_received_min:
-      name: company_received_min
-      in: query
-      description: Return results with date >= company_received_min (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    date_received_min:
-      name: date_received_min
-      in: query
-      description: Return results with date >= date_received_min (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    zip_code:
-      name: zip_code
-      in: query
-      description: Filter the results to only return these zip codes
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    company_public_response:
-      name: company_public_response
-      in: query
-      description: Filter the results to only return these types of public response by the company
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    from:
-      name: frm
-      in: query
-      description: Return results starting from a specific index, only if format parameter is not specified, ignore otherwise
-      schema:
-        type: integer
-        format: int64
-        minimum: 1
-        maximum: 100000
-        default: 0
-    no_aggs:
-      name: no_aggs
-      in: query
-      description: Include aggregations in result or not, True means no aggregations will be included, False means aggregations will be included.
-      schema:
-        type: boolean
-        default: false
-    issue:
-      name: issue
-      in: query
-      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    tags:
-      name: tags
-      in: query
-      description: Filter the results to only return these types of tag
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    size:
-      name: size
-      in: query
-      description: Limit the size of the results
-      schema:
-        type: integer
-        format: int64
-        minimum: 1
-        maximum: 100
-        default: 10
-    search_after:
-      name: search_after
-      in: query
-      description: Used in conjunction with frm parameter to paginate results.
-      schema:
-        type: string
-    has_narrative:
-      name: has_narrative
-      in: query
-      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    company:
-      name: company
-      in: query
-      description: Filter the results to only return these companies
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    state:
-      name: state
-      in: query
-      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    format:
-      name: format
-      in: query
-      description: Format to be returned, if this parameter is not specified, frm/size parameters can be used properly, but if a format is specified for exporting, frm/size will be ignored
-      schema:
-        type: string
-        enum:
-        - json
-        - csv
-        default: json
-    company_response:
-      name: company_response
-      in: query
-      description: Filter the results to only return these types of response by the company
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    date_received_max:
-      name: date_received_max
-      in: query
-      description: Return results with date < date_received_max (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    product:
-      name: product
-      in: query
-      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    timely:
-      name: timely
-      in: query
-      description: Filter the results to show whether a response was timely
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    field:
-      name: field
-      in: query
-      description: If the parameter "search_term" has a value, use "field" to specify which field is searched. If not specified, "complaint_what_happened" will be searched.
-      schema:
-        type: string
-        enum:
-        - complaint_what_happened
-        - company_public_response
-        - all
-        default: complaint_what_happened
-    submitted_via:
-      name: submitted_via
-      in: query
-      description: Filter the results to only return these types of way consumers submitted their complaints
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    search_term:
-      name: search_term
-      in: query
-      description: Return results containing specific term
-      schema:
-        type: string
-    no_highlight:
-      name: no_highlight
-      in: query
-      description: Include highlight of search term in result or not, True means no highlighting will be included, False means highlighting will be included.
-      schema:
-        type: boolean
-        default: false
-    sort:
-      name: sort
-      in: query
-      description: Return results sort in a particular order
-      schema:
-        type: string
-        enum:
-        - relevance_desc
-        - relevance_asc
-        - created_date_desc
-        - created_date_asc
-        default: relevance_desc
-    company_received_max:
-      name: company_received_max
-      in: query
-      description: Return results with date < company_received_max (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
 externalDocs:
   description: Additional API Information
   url: https://cfpb.github.io/api/ccdb/

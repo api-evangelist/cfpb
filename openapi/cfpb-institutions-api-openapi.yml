@@ -39,17 +39,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FilingSummary:
+    FilingStatus:
       type: object
       properties:
-        period:
+        code:
+          type: integer
+          description: Status code
+        message:
           type: string
-          description: Filing period year
-        lei:
-          type: string
-          description: Legal Entity Identifier
-        status:
-          $ref: '#/components/schemas/FilingStatus'
+          description: Status message
     Institution:
       type: object
       properties:
@@ -75,15 +73,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FilingSummary'
-    FilingStatus:
+    FilingSummary:
       type: object
       properties:
-        code:
-          type: integer
-          description: Status code
-        message:
+        period:
           type: string
-          description: Status message
+          description: Filing period year
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        status:
+          $ref: '#/components/schemas/FilingStatus'
   parameters:
     lei:
       name: lei

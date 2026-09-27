@@ -83,10 +83,28 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    leis:
+      name: leis
+      in: query
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
+      schema:
+        type: string
+    ethnicities:
+      name: ethnicities
+      in: query
+      description: Comma-separated list of ethnicity codes
+      schema:
+        type: string
     races:
       name: races
       in: query
       description: Comma-separated list of race codes
+      schema:
+        type: string
+    derived_dwelling_categories:
+      name: derived_dwelling_categories
+      in: query
+      description: Comma-separated list of derived dwelling category codes
       schema:
         type: string
     msamds:
@@ -107,54 +125,16 @@ components:
       description: Comma-separated list of variables to aggregate by (e.g. action_taken,loan_type)
       schema:
         type: string
-    derived_dwelling_categories:
-      name: derived_dwelling_categories
-      in: query
-      description: Comma-separated list of derived dwelling category codes
-      schema:
-        type: string
-    loan_purposes:
-      name: loan_purposes
-      in: query
-      description: Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)
-      schema:
-        type: string
-    years:
-      name: years
-      in: query
-      required: true
-      description: Comma-separated list of years (e.g. 2018,2019,2020)
-      schema:
-        type: string
-        example: '2020'
-    leis:
-      name: leis
-      in: query
-      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
-      schema:
-        type: string
     sexes:
       name: sexes
       in: query
       description: Comma-separated list of sex codes (1=Male, 2=Female, 3=Information not provided, 4=Not applicable)
       schema:
         type: string
-    actions_taken:
-      name: actions_taken
+    loan_types:
+      name: loan_types
       in: query
-      description: Comma-separated list of action taken codes (1-8)
-      schema:
-        type: string
-    counties:
-      name: counties
-      in: query
-      description: Comma-separated list of 5-digit FIPS county codes
-      schema:
-        type: string
-    ethnicities:
-      name: ethnicities
-      in: query
-      description: Comma-separated list of ethnicity codes
+      description: Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)
       schema:
         type: string
     states:
@@ -169,16 +149,36 @@ components:
       description: Comma-separated list of derived loan product type codes
       schema:
         type: string
+    actions_taken:
+      name: actions_taken
+      in: query
+      description: Comma-separated list of action taken codes (1-8)
+      schema:
+        type: string
+    years:
+      name: years
+      in: query
+      required: true
+      description: Comma-separated list of years (e.g. 2018,2019,2020)
+      schema:
+        type: string
+        example: '2020'
     lien_statuses:
       name: lien_statuses
       in: query
       description: Comma-separated list of lien status codes (1=First lien, 2=Subordinate lien)
       schema:
         type: string
-    loan_types:
-      name: loan_types
+    loan_purposes:
+      name: loan_purposes
       in: query
-      description: Comma-separated list of loan type codes (1=Conventional, 2=FHA, 3=VA, 4=FSA/RHS)
+      description: Comma-separated list of loan purpose codes (1=Home purchase, 2=Home improvement, 31=Refinancing, 32=Cash-out refinancing, 4=Other purpose, 5=Not applicable)
+      schema:
+        type: string
+    counties:
+      name: counties
+      in: query
+      description: Comma-separated list of 5-digit FIPS county codes
       schema:
         type: string
   schemas:

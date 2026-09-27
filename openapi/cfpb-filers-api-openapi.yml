@@ -42,10 +42,22 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    leis:
+      name: leis
+      in: query
+      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
+      schema:
+        type: string
     msamds:
       name: msamds
       in: query
       description: Comma-separated list of 5-digit MSA/MD codes
+      schema:
+        type: string
+    states:
+      name: states
+      in: query
+      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
       schema:
         type: string
     years:
@@ -56,25 +68,20 @@ components:
       schema:
         type: string
         example: '2020'
-    leis:
-      name: leis
-      in: query
-      description: Comma-separated list of Legal Entity Identifiers (LEI) for financial institutions
-      schema:
-        type: string
     counties:
       name: counties
       in: query
       description: Comma-separated list of 5-digit FIPS county codes
       schema:
         type: string
-    states:
-      name: states
-      in: query
-      description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
-      schema:
-        type: string
   schemas:
+    FilersResult:
+      type: object
+      properties:
+        institutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Institution'
     Institution:
       type: object
       properties:
@@ -87,10 +94,3 @@ components:
         period:
           type: string
           description: Filing period year
-    FilersResult:
-      type: object
-      properties:
-        institutions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Institution'

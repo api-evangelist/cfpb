@@ -167,32 +167,51 @@ paths:
       operationId: getInstitutionsByLeiFilingsByPeriodSubmissionsBySubmissionIdSummary
       x-operation-id-source: derived
 components:
-  parameters:
-    period:
-      name: period
-      in: path
-      required: true
-      description: Filing period (year, e.g. 2020)
-      schema:
-        type: string
-        example: '2020'
-    lei:
-      name: lei
-      in: path
-      required: true
-      description: Legal Entity Identifier of the financial institution
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD
-    submissionId:
-      name: submissionId
-      in: path
-      required: true
-      description: Submission identifier
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD-2020-1
   schemas:
+    SubmissionSummary:
+      type: object
+      properties:
+        submission:
+          $ref: '#/components/schemas/Submission'
+        transmittalSheet:
+          $ref: '#/components/schemas/TransmittalSheet'
+    SignatureReceipt:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp of signing
+        receipt:
+          type: string
+          description: Receipt code
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+    Submission:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Submission identifier
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        start:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission started
+        end:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission ended
+    SubmissionStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
     TransmittalSheet:
       type: object
       properties:
@@ -225,50 +244,31 @@ components:
               type: string
             address:
               type: object
-    SignatureReceipt:
-      type: object
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-          description: Unix timestamp of signing
-        receipt:
-          type: string
-          description: Receipt code
-        status:
-          $ref: '#/components/schemas/SubmissionStatus'
-    SubmissionSummary:
-      type: object
-      properties:
-        submission:
-          $ref: '#/components/schemas/Submission'
-        transmittalSheet:
-          $ref: '#/components/schemas/TransmittalSheet'
-    SubmissionStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code
-        message:
-          type: string
-          description: Status message
-    Submission:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Submission identifier
-        status:
-          $ref: '#/components/schemas/SubmissionStatus'
-        start:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission started
-        end:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission ended
+  parameters:
+    submissionId:
+      name: submissionId
+      in: path
+      required: true
+      description: Submission identifier
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD-2020-1
+    period:
+      name: period
+      in: path
+      required: true
+      description: Filing period (year, e.g. 2020)
+      schema:
+        type: string
+        example: '2020'
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
   securitySchemes:
     bearerAuth:
       type: http

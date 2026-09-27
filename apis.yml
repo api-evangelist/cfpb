@@ -44,6 +44,9 @@ tags:
   - Financial Data
   - Regulatory
   - Open Data
+  - Consumer Protection
+  - Federal Government
+  - Financial Services
 apis:
 - aid: cfpb:cfpb-aggregations-api
   name: Consumer Financial Protection Bureau (CFPB) Aggregations API
@@ -308,6 +311,8 @@ common:
     url: rate-limits/cfpb-rate-limits.yml
   - type: FinOps
     url: finops/cfpb-finops.yml
+  - type: Blog
+    url: https://www.consumerfinance.gov/about-us/newsroom/feed/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

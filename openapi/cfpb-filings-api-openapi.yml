@@ -58,25 +58,55 @@ paths:
       operationId: postInstitutionsByLeiFilingsByPeriod
       x-operation-id-source: derived
 components:
-  parameters:
-    period:
-      name: period
-      in: path
-      required: true
-      description: Filing period (year, e.g. 2020)
-      schema:
-        type: string
-        example: '2020'
-    lei:
-      name: lei
-      in: path
-      required: true
-      description: Legal Entity Identifier of the financial institution
-      schema:
-        type: string
-        example: B90YWS6AFX2LGWOXJ1LD
   schemas:
+    SubmissionSummary:
+      type: object
+      properties:
+        submission:
+          $ref: '#/components/schemas/Submission'
+        transmittalSheet:
+          $ref: '#/components/schemas/TransmittalSheet'
     FilingStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Status code
+        message:
+          type: string
+          description: Status message
+    Filing:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Filing period year
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        status:
+          $ref: '#/components/schemas/FilingStatus'
+        submissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionSummary'
+    Submission:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Submission identifier
+        status:
+          $ref: '#/components/schemas/SubmissionStatus'
+        start:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission started
+        end:
+          type: integer
+          format: int64
+          description: Unix timestamp when submission ended
+    SubmissionStatus:
       type: object
       properties:
         code:
@@ -117,53 +147,23 @@ components:
               type: string
             address:
               type: object
-    Filing:
-      type: object
-      properties:
-        period:
-          type: string
-          description: Filing period year
-        lei:
-          type: string
-          description: Legal Entity Identifier
-        status:
-          $ref: '#/components/schemas/FilingStatus'
-        submissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/SubmissionSummary'
-    SubmissionSummary:
-      type: object
-      properties:
-        submission:
-          $ref: '#/components/schemas/Submission'
-        transmittalSheet:
-          $ref: '#/components/schemas/TransmittalSheet'
-    SubmissionStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Status code
-        message:
-          type: string
-          description: Status message
-    Submission:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Submission identifier
-        status:
-          $ref: '#/components/schemas/SubmissionStatus'
-        start:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission started
-        end:
-          type: integer
-          format: int64
-          description: Unix timestamp when submission ended
+  parameters:
+    period:
+      name: period
+      in: path
+      required: true
+      description: Filing period (year, e.g. 2020)
+      schema:
+        type: string
+        example: '2020'
+    lei:
+      name: lei
+      in: path
+      required: true
+      description: Legal Entity Identifier of the financial institution
+      schema:
+        type: string
+        example: B90YWS6AFX2LGWOXJ1LD
   securitySchemes:
     bearerAuth:
       type: http
