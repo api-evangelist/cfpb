@@ -108,15 +108,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    company_response:
-      name: company_response
-      in: query
-      description: Filter the results to only return these types of response by the company
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
     timely:
       name: timely
       in: query
@@ -135,59 +126,10 @@ components:
         type: array
         items:
           type: string
-    company_received_max:
-      name: company_received_max
-      in: query
-      description: Return results with date < company_received_max (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    date_received_min:
-      name: date_received_min
-      in: query
-      description: Return results with date >= date_received_min (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    has_narrative:
-      name: has_narrative
-      in: query
-      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    size:
-      name: size
-      in: query
-      description: Limit the size of the results
-      schema:
-        type: integer
-        format: int64
-        minimum: 1
-        maximum: 100
-        default: 10
-    suggest_text:
-      name: text
-      in: query
-      description: text to use for suggestions
-      required: true
-      schema:
-        type: string
     submitted_via:
       name: submitted_via
       in: query
       description: Filter the results to only return these types of way consumers submitted their complaints
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    issue:
-      name: issue
-      in: query
-      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
       explode: true
       schema:
         type: array
@@ -202,10 +144,19 @@ components:
         type: array
         items:
           type: string
-    product:
-      name: product
+    has_narrative:
+      name: has_narrative
       in: query
-      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    zip_code:
+      name: zip_code
+      in: query
+      description: Filter the results to only return these zip codes
       explode: true
       schema:
         type: array
@@ -220,13 +171,32 @@ components:
         type: array
         items:
           type: string
-    company_received_min:
-      name: company_received_min
+    suggest_text:
+      name: text
       in: query
-      description: Return results with date >= company_received_min (i.e. 2017-03-04)
+      description: text to use for suggestions
+      required: true
       schema:
         type: string
-        format: date
+    size:
+      name: size
+      in: query
+      description: Limit the size of the results
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        maximum: 100
+        default: 10
+    company_response:
+      name: company_response
+      in: query
+      description: Filter the results to only return these types of response by the company
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
     date_received_max:
       name: date_received_max
       in: query
@@ -234,15 +204,45 @@ components:
       schema:
         type: string
         format: date
-    zip_code:
-      name: zip_code
+    date_received_min:
+      name: date_received_min
       in: query
-      description: Filter the results to only return these zip codes
+      description: Return results with date >= date_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    issue:
+      name: issue
+      in: query
+      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
       explode: true
       schema:
         type: array
         items:
           type: string
+    product:
+      name: product
+      in: query
+      description: 'Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by ''•'', Mortgage•FHA mortgage'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company_received_min:
+      name: company_received_min
+      in: query
+      description: Return results with date >= company_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    company_received_max:
+      name: company_received_max
+      in: query
+      description: Return results with date < company_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
   schemas:
     SuggestResult:
       type: array
