@@ -64,6 +64,17 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    field:
+      name: field
+      in: query
+      description: If the parameter "search_term" has a value, use "field" to specify which field is searched. If not specified, "complaint_what_happened" will be searched.
+      schema:
+        type: string
+        enum:
+        - complaint_what_happened
+        - company_public_response
+        - all
+        default: complaint_what_happened
     trend_interval:
       name: trend_interval
       in: query
@@ -77,33 +88,28 @@ components:
         - month
         - week
         - day
-    tags:
-      name: tags
+    lens:
+      name: lens
       in: query
-      description: Filter the results to only return these types of tag
+      required: true
+      description: The data lens through which to view complaint trends over time.
+      schema:
+        type: string
+        enum:
+        - overview
+        - issue
+        - product
+        - tags
+        default: overview
+    company_response:
+      name: company_response
+      in: query
+      description: Filter the results to only return these types of response by the company
       explode: true
       schema:
         type: array
         items:
           type: string
-    date_received_max:
-      name: date_received_max
-      in: query
-      description: Return results with date < date_received_max (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    field:
-      name: field
-      in: query
-      description: If the parameter "search_term" has a value, use "field" to specify which field is searched. If not specified, "complaint_what_happened" will be searched.
-      schema:
-        type: string
-        enum:
-        - complaint_what_happened
-        - company_public_response
-        - all
-        default: complaint_what_happened
     company_received_max:
       name: company_received_max
       in: query
@@ -111,31 +117,10 @@ components:
       schema:
         type: string
         format: date
-    company_public_response:
-      name: company_public_response
+    focus:
+      name: focus
       in: query
-      description: Filter the results to only return these types of public response by the company
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    sub_lens:
-      name: sub_lens
-      in: query
-      description: The sub-lens through which to view complaint trends over time.
-      schema:
-        type: string
-        enum:
-        - issue
-        - product
-        - sub_product
-        - sub_issue
-        - tags
-    company:
-      name: company
-      in: query
-      description: Filter the results to only return these companies
+      description: The name of the product or company on which to focus charts for products and issues
       explode: true
       schema:
         type: array
@@ -148,10 +133,55 @@ components:
       schema:
         type: string
         format: date
-    issue:
-      name: issue
+    sub_lens_depth:
+      name: sub_lens_depth
       in: query
-      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
+      description: The top X trend sub aggregations will be returned, where X is the supplied sub_lens_depth.
+      schema:
+        type: integer
+        maximum: 10000000
+        minimum: 5
+        format: int64
+        default: 10
+    company_received_min:
+      name: company_received_min
+      in: query
+      description: Return results with date >= company_received_min (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    sub_lens:
+      name: sub_lens
+      in: query
+      description: The sub-lens through which to view complaint trends over time.
+      schema:
+        type: string
+        enum:
+        - issue
+        - product
+        - sub_product
+        - sub_issue
+        - tags
+    timely:
+      name: timely
+      in: query
+      description: Filter the results to show whether a response was timely
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    date_received_max:
+      name: date_received_max
+      in: query
+      description: Return results with date < date_received_max (i.e. 2017-03-04)
+      schema:
+        type: string
+        format: date
+    company_public_response:
+      name: company_public_response
+      in: query
+      description: Filter the results to only return these types of public response by the company
       explode: true
       schema:
         type: array
@@ -166,28 +196,6 @@ components:
         type: array
         items:
           type: string
-    has_narrative:
-      name: has_narrative
-      in: query
-      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    lens:
-      name: lens
-      in: query
-      required: true
-      description: The data lens through which to view complaint trends over time.
-      schema:
-        type: string
-        enum:
-        - overview
-        - issue
-        - product
-        - tags
-        default: overview
     zip_code:
       name: zip_code
       in: query
@@ -197,10 +205,43 @@ components:
         type: array
         items:
           type: string
-    focus:
-      name: focus
+    issue:
+      name: issue
       in: query
-      description: The name of the product or company on which to focus charts for products and issues
+      description: 'Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by ''•'', Getting a Loan•Can''t qualify for a loan'
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    has_narrative:
+      name: has_narrative
+      in: query
+      description: Filter the results to only return the specified state of whether it has narrative in the complaint or not, i.e. yes, no
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    company:
+      name: company
+      in: query
+      description: Filter the results to only return these companies
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    search_term:
+      name: search_term
+      in: query
+      description: Return results containing specific term
+      schema:
+        type: string
+    state:
+      name: state
+      in: query
+      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
       explode: true
       schema:
         type: array
@@ -216,6 +257,15 @@ components:
         minimum: 5
         format: int64
         default: 10
+    tags:
+      name: tags
+      in: query
+      description: Filter the results to only return these types of tag
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
     submitted_via:
       name: submitted_via
       in: query
@@ -225,75 +275,7 @@ components:
         type: array
         items:
           type: string
-    company_received_min:
-      name: company_received_min
-      in: query
-      description: Return results with date >= company_received_min (i.e. 2017-03-04)
-      schema:
-        type: string
-        format: date
-    timely:
-      name: timely
-      in: query
-      description: Filter the results to show whether a response was timely
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    state:
-      name: state
-      in: query
-      description: Filter the results to only return these states (use abbreviation, i.e. CA, VA)
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    search_term:
-      name: search_term
-      in: query
-      description: Return results containing specific term
-      schema:
-        type: string
-    company_response:
-      name: company_response
-      in: query
-      description: Filter the results to only return these types of response by the company
-      explode: true
-      schema:
-        type: array
-        items:
-          type: string
-    sub_lens_depth:
-      name: sub_lens_depth
-      in: query
-      description: The top X trend sub aggregations will be returned, where X is the supplied sub_lens_depth.
-      schema:
-        type: integer
-        maximum: 10000000
-        minimum: 5
-        format: int64
-        default: 10
   schemas:
-    TrendsResult:
-      type: object
-      properties:
-        aggregations:
-          type: object
-          properties:
-            company:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-            issue:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-            product:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-            sub_issue:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-            sub_product:
-              $ref: '#/components/schemas/MultiLevelAggregation'
-            tags:
-              $ref: '#/components/schemas/MultiLevelAggregation'
     MultiLevelAggregation:
       type: object
       properties:
@@ -314,6 +296,24 @@ components:
             sum_other_doc_count:
               type: integer
               description: The number of complaints that were not included in this aggregation.
+    TrendsResult:
+      type: object
+      properties:
+        aggregations:
+          type: object
+          properties:
+            company:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            issue:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            product:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            sub_issue:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            sub_product:
+              $ref: '#/components/schemas/MultiLevelAggregation'
+            tags:
+              $ref: '#/components/schemas/MultiLevelAggregation'
     MultiLevelBucket:
       type: object
       properties:
