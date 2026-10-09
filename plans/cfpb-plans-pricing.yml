@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: CFPB API Plans and Pricing
 description: The Consumer Financial Protection Bureau (CFPB) provides all public APIs free of charge as a U.S. government agency. There are no subscription tiers, paid plans, or API keys required to access the Consumer Complaint Database API or the HMDA Data Browser API. The HMDA Filing API requires institutional credentials for regulated financial institutions submitting compliance data.
 plans:
@@ -29,3 +33,21 @@ notes:
   - No commercial licensing or tiered pricing applies
   - Source code is in the public domain within the United States
   - Contact tech@consumerfinance.gov for technical assistance
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Public Access
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: HMDA Institutional Filing
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
