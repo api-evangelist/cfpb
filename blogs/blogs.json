@@ -2,6 +2,14 @@
   "repo": "cfpb",
   "feeds": [
     {
+      "source": "https://www.consumerfinance.gov/about-us/blog/",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://www.consumerfinance.gov/about-us/newsroom/feed/",
+      "error": "HTTPError"
+    },
+    {
       "source": "https://www.linkedin.com/company/consumer-financial-protection-bureau/",
       "feed_url": "https://www.linkedin.com/company/consumer-financial-protection-bureau/",
       "title": "",
@@ -9,7 +17,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 0,
   "agent_pulled": "2026-07-04"
 }
