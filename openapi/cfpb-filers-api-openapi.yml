@@ -42,20 +42,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    counties:
-      name: counties
-      in: query
-      description: Comma-separated list of 5-digit FIPS county codes
-      schema:
-        type: string
-    years:
-      name: years
-      in: query
-      required: true
-      description: Comma-separated list of years (e.g. 2018,2019,2020)
-      schema:
-        type: string
-        example: '2020'
     leis:
       name: leis
       in: query
@@ -68,20 +54,27 @@ components:
       description: Comma-separated list of two-letter state abbreviations (e.g. CA,TX)
       schema:
         type: string
+    years:
+      name: years
+      in: query
+      required: true
+      description: Comma-separated list of years (e.g. 2018,2019,2020)
+      schema:
+        type: string
+        example: '2020'
     msamds:
       name: msamds
       in: query
       description: Comma-separated list of 5-digit MSA/MD codes
       schema:
         type: string
+    counties:
+      name: counties
+      in: query
+      description: Comma-separated list of 5-digit FIPS county codes
+      schema:
+        type: string
   schemas:
-    FilersResult:
-      type: object
-      properties:
-        institutions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Institution'
     Institution:
       type: object
       properties:
@@ -94,3 +87,10 @@ components:
         period:
           type: string
           description: Filing period year
+    FilersResult:
+      type: object
+      properties:
+        institutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Institution'
