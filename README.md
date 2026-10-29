@@ -66,40 +66,168 @@
 
 The Consumer Financial Protection Bureau (CFPB) provides public REST APIs for searching consumer financial complaint data, accessing Home Mortgage Disclosure Act (HMDA) mortgage lending records, and retrieving regulatory filing data. These APIs support financial researchers, journalists, developers, and the general public in understanding consumer financial markets and lending practices across the United States.
 
-## APIs
+**Areas:** Consumer Finance · Government · Complaints · Mortgage · HMDA · Financial Data · Regulatory · Open Data · Consumer Protection · Federal Government · Financial Services
 
-### Consumer Complaint Database API
-Search and retrieve consumer financial complaints submitted to companies. Contains over 15 million records filterable by product, issue, company, state, and date range.
+## Consumer Financial Protection Bureau (CFPB) on APIs.io
 
-- **Documentation**: https://cfpb.github.io/api/ccdb/api.html
-- **Base URL**: https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/
-- **GitHub**: https://github.com/cfpb/ccdb5-api
+Everything profiled for Consumer Financial Protection Bureau (CFPB) is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cfpb/](https://apis.io/providers/cfpb/)** — or go straight to one of the APIs or properties below.
 
-### HMDA Data Browser API
-Access Home Mortgage Disclosure Act (HMDA) mortgage lending data. Generate aggregation reports and download raw data filtered by geography and financial institution.
+### APIs (11)
 
-- **Documentation**: https://ffiec.cfpb.gov/documentation/api/data-browser/
-- **Base URL**: https://ffiec.cfpb.gov/v2/data-browser-api/
-- **GitHub**: https://github.com/cfpb/hmda-platform
+- [Consumer Financial Protection Bureau (CFPB) Aggregations API](https://apis.io/apis/cfpb/cfpb-aggregations-api/) — Aggregated HMDA data reports
+- [Consumer Financial Protection Bureau (CFPB) Complaints API](https://apis.io/apis/cfpb/cfpb-complaints-api/) — These endpoints provide access to consumer complaints
+- [Consumer Financial Protection Bureau (CFPB) CSV API](https://apis.io/apis/cfpb/cfpb-csv-api/) — HMDA data as CSV downloads
+- [Consumer Financial Protection Bureau (CFPB) Edits API](https://apis.io/apis/cfpb/cfpb-edits-api/) — Submission edit and validation reports
+- [Consumer Financial Protection Bureau (CFPB) Filers API](https://apis.io/apis/cfpb/cfpb-filers-api/) — HMDA filing institution information
+- [Consumer Financial Protection Bureau (CFPB) Filings API](https://apis.io/apis/cfpb/cfpb-filings-api/) — HMDA filing management
+- [Consumer Financial Protection Bureau (CFPB) Health API](https://apis.io/apis/cfpb/cfpb-health-api/) — Service health check
+- [Consumer Financial Protection Bureau (CFPB) Institutions API](https://apis.io/apis/cfpb/cfpb-institutions-api/) — Financial institution information
+- [Consumer Financial Protection Bureau (CFPB) Submissions API](https://apis.io/apis/cfpb/cfpb-submissions-api/) — HMDA data submission management
+- [Consumer Financial Protection Bureau (CFPB) Trends API](https://apis.io/apis/cfpb/cfpb-trends-api/) — These endpoints provide access aggregated consumer complaint data
+- [Consumer Financial Protection Bureau (CFPB) Typeahead API](https://apis.io/apis/cfpb/cfpb-typeahead-api/) — These endpoints support the typeahead boxes in the UI
 
-### HMDA Platform Filing API
-Submit HMDA regulatory filings programmatically. For use by covered financial institutions required to report mortgage lending data.
+### Published properties
 
-- **Documentation**: https://ffiec.cfpb.gov/documentation/category/developer-apis
-- **Base URL**: https://ffiec.cfpb.gov/
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Resources
+#### Agentic access (1)
 
-- **Website**: https://www.consumerfinance.gov/
-- **Developer Portal**: https://cfpb.github.io/
-- **GitHub Organization**: https://github.com/cfpb
-- **Data Research**: https://www.consumerfinance.gov/data-research/
-- **X (Twitter)**: https://twitter.com/CFPB
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Contact
+- [Cfpb Agentic Access](https://apis.io/agentic-access/cfpb/cfpb-agentic-access/)
 
-- **Technical Support**: tech@consumerfinance.gov
+#### JSON Schema (2)
 
-## Licensing
+The data models the API reads and writes.
 
-As a U.S. Government agency, CFPB source code and public data are in the public domain within the United States. All public APIs are free to use with no authentication required for public data endpoints.
+- [Complaint](https://apis.io/schemas/cfpb/cfpb-complaint/)
+- [HMDA Loan Application Register (LAR) Record](https://apis.io/schemas/cfpb/cfpb-hmda-lar/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Cfpb Context](https://apis.io/jsonld/cfpb/cfpb-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Cfpb Vocabulary](https://apis.io/vocabularies/cfpb/cfpb-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Cfpb Complaint Example](https://apis.io/examples/cfpb/cfpb-complaint-example/)
+- [Cfpb Hmda Aggregation Example](https://apis.io/examples/cfpb/cfpb-hmda-aggregation-example/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Consumer Complaint Database Aggregations API](https://apis.io/collections/cfpb/open-cfpb-aggregations-api/)
+- [Consumer Complaint Database Aggregations Complaints API](https://apis.io/collections/cfpb/open-cfpb-complaints-api/)
+- [Consumer Complaint Database Aggregations CSV API](https://apis.io/collections/cfpb/open-cfpb-csv-api/)
+- [Consumer Complaint Database Aggregations Edits API](https://apis.io/collections/cfpb/open-cfpb-edits-api/)
+- [Consumer Complaint Database Aggregations Filers API](https://apis.io/collections/cfpb/open-cfpb-filers-api/)
+- [Consumer Complaint Database Aggregations Filings API](https://apis.io/collections/cfpb/open-cfpb-filings-api/)
+- [Consumer Complaint Database Aggregations Health API](https://apis.io/collections/cfpb/open-cfpb-health-api/)
+- [Consumer Complaint Database Aggregations Institutions API](https://apis.io/collections/cfpb/open-cfpb-institutions-api/)
+- [Consumer Complaint Database Aggregations Submissions API](https://apis.io/collections/cfpb/open-cfpb-submissions-api/)
+- [Consumer Complaint Database Aggregations Trends API](https://apis.io/collections/cfpb/open-cfpb-trends-api/)
+- [Consumer Complaint Database Aggregations Typeahead API](https://apis.io/collections/cfpb/open-cfpb-typeahead-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Consumer Financial Protection Bureau (CFPB) — jsonschema rules](https://apis.io/rules/cfpb/cfpb-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cfpb Authentication](https://apis.io/security/cfpb/cfpb-authentication/)
+- [Cfpb Domain Security](https://apis.io/security/cfpb/cfpb-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cfpb Plans Pricing](https://apis.io/plans/cfpb/cfpb-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cfpb Rate Limits](https://apis.io/rate-limits/cfpb/cfpb-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cfpb Finops](https://apis.io/finops/cfpb/cfpb-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.consumerfinance.gov/)
+- [Documentation](https://cfpb.github.io/)
+- [Pricing](https://www.consumerfinance.gov/data-research/)
+- [Blog](https://www.consumerfinance.gov/about-us/blog/)
+- [Status](https://www.consumerfinance.gov/)
+
+## API Evangelist rating
+
+**Kin Score 34.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 53.8 |
+| Contract governance | 9.8 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 15.8 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cfpb/](https://apis.io/providers/cfpb/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Consumer Financial Protection Bureau (CFPB): the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cfpb/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
